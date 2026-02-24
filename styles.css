@@ -1,0 +1,261 @@
+/* ===========================
+   Design Tokens
+=========================== */
+:root {
+  /* Colors — light mode */
+  --color-bg:           #ffffff;
+  --color-text-primary: #111827;
+  --color-text-muted:   #6b7280;
+  --color-text-subtle:  #9ca3af;
+  --color-text-hover:   #6b7280;
+  --color-text-inverse: #ffffff;
+
+  --color-btn-primary:        #86198f;
+  --color-btn-primary-hover:  #d946ef;
+  --color-btn-primary-focus:  #c026d3;
+
+  --color-blob-from: #ff80b5;
+  --color-blob-to:   #9089fc;
+
+  /* Font sizes */
+  --fs-sm:    0.875rem;   /* nav, buttons */
+  --fs-base:  1rem;
+  --fs-lg:    1.125rem;
+  --fs-xl:    1.25rem;    /* hero description */
+  --fs-hero:  4.5rem;     /* hero heading */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:           #111827;
+    --color-text-primary: #ffffff;
+    --color-text-muted:   #9ca3af;
+    --color-text-hover:   #d1d5db;
+
+    --color-btn-primary:        #d946ef;
+    --color-btn-primary-hover:  #e879f9;
+    --color-btn-primary-focus:  #a21caf;
+  }
+}
+
+/* ===========================
+   Reset & Base
+=========================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--color-bg);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ===========================
+   Site Wrapper
+=========================== */
+.site-wrapper {
+  background-color: var(--color-bg);
+  min-height: 100vh;
+}
+
+/* ===========================
+   Header & Nav
+=========================== */
+.site-header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 50;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+}
+
+/* Logo */
+.nav-logo a {
+  display: flex;
+  align-items: center;
+  margin: -0.375rem;
+  padding: 0.375rem;
+}
+
+.nav-logo {
+  height: 3rem;
+  width: auto;
+  display: block;
+}
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.nav-links a {
+  font-size: var(--fs-sm);
+  line-height: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.nav-links a:hover {
+  color: var(--color-text-hover);
+}
+
+/* Login */
+.nav-login {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-login a {
+  font-size: var(--fs-sm);
+  line-height: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.nav-login a:hover {
+  color: var(--color-text-hover);
+}
+
+/* ===========================
+   Hero Section
+=========================== */
+.hero-wrapper {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-content {
+  margin: 0 auto;
+  max-width: 50rem;
+}
+
+.hero-center {
+  text-align: center;
+}
+
+/* 3D Model Viewer */
+.hero-model {
+  width: 100%;
+  max-width: 700px;
+  height: 300px;
+  margin: 5rem auto 2rem;
+  display: block;
+}
+
+model-viewer::part(default-progress-bar) {
+  display: none;
+}
+
+/* Heading */
+.hero-title {
+  margin: 0;
+  font-size: var(--fs-hero);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-family: 'Playfair Display', serif;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  text-wrap: nowrap;
+}
+
+/* Description */
+.hero-desc {
+  margin: 2rem 5rem 0;
+  font-size: var(--fs-xl);
+  line-height: 2rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-wrap: pretty;
+}
+
+/* CTA Buttons */
+.hero-cta {
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.btn-primary {
+  border-radius: 0.375rem;
+  background-color: var(--color-btn-primary);
+  padding: 0.625rem 0.875rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-text-inverse);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: background-color 0.15s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-btn-primary-hover);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-btn-primary-focus);
+  outline-offset: 2px;
+}
+
+.btn-secondary {
+  font-size: var(--fs-sm);
+  line-height: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.btn-secondary:hover {
+  color: var(--color-text-hover);
+}
+
+/* ===========================
+   Gradient Blobs
+=========================== */
+.gradient-blob {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: -10;
+  overflow: hidden;
+  filter: blur(3rem);
+}
+
+.gradient-blob > div {
+  clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%);
+  position: relative;
+  aspect-ratio: 1155 / 678;
+  width: 72.1875rem; /* ~1155px scaled */
+  background: linear-gradient(to top right, var(--color-blob-from), var(--color-blob-to));
+  opacity: 0.3;
+}
+
+.gradient-blob--top {
+  top: -20rem;
+}
+
+.gradient-blob--top > div {
+  left: calc(50% - 30rem);
+  transform: translateX(-50%) rotate(30deg);
+}
+
+.gradient-blob--bottom {
+  top: calc(100% - 30rem);
+}
+
+.gradient-blob--bottom > div {
+  left: calc(50% + 36rem);
+  transform: translateX(-50%);
+}

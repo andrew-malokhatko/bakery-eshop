@@ -4,26 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bakery E-Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Bakery E-Shop</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Shop</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+
+<div class="site-wrapper">
+
+  <header class="site-header">
+    <nav class="main-nav">
+      <div class="nav-logo">
+        <a href="#">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZxlBhuAe5a2Quu-_DVHCVdPwH4Bk0EPNT6g&s" alt="Bakery Logo" class="nav-logo" />
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="#">Product</a>
+        <a href="#">Features</a>
+        <a href="#">Marketplace</a>
+        <a href="#">Company</a>
+      </div>
+      <div class="nav-login">
+        <a href="#">Log in <span aria-hidden="true">&rarr;</span></a>
+      </div>
     </nav>
   </header>
 
-  <main>
-    <h2>Welcome to our Bakery</h2>
-    <p>Fresh bread, pastries, and cakes baked daily.</p>
-  </main>
+  <div class="hero-wrapper">
 
-  <footer>
-    <p>&copy; 2026 Bakery E-Shop</p>
-  </footer>
+    <div class="gradient-blob gradient-blob--top" aria-hidden="true">
+      <div></div>
+    </div>
+
+    <div class="gradient-blob gradient-blob--bottom" aria-hidden="true">
+      <div></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-center">
+
+        <model-viewer
+          src="orange_cake.glb"
+          auto-rotate
+          rotation-per-second="20deg"
+          auto-rotate-delay="0"
+          min-camera-orbit="45deg 75deg 3m"
+          max-camera-orbit="45deg 75deg 3m"
+          disable-ui
+          class="hero-model"
+          alt="3D Cake Model">
+        </model-viewer>
+
+        <h1 class="hero-title">Beautiful Bakery e-shop</h1>
+
+        <p class="hero-desc">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.</p>
+
+        <div class="hero-cta">
+          <a href="#" class="btn-primary">Get started</a>
+          <a href="#" class="btn-secondary">Learn more <span aria-hidden="true">&rarr;</span></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
