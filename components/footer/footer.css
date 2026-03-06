@@ -1,0 +1,47 @@
+.site-footer {
+  border-top: 1px solid rgba(0,0,0,.10);
+  padding: 1.25rem 0 2rem;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-links a {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.footer-links .sep {
+  color: rgba(0,0,0,.25);
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-subtle);
+  font-weight: 700;
+}
+
+.footer-logo-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 2px solid rgba(0,0,0,.65);
+  display: grid;
+  place-items: center;
+  color: rgba(0,0,0,.65);
+}

@@ -1,0 +1,16 @@
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.categories-more {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.categories-more a {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}

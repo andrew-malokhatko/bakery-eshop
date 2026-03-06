@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,36 +8,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script type="module" src="components/main.js"></script>
 </head>
+
 <body>
 
 <div class="site-wrapper">
 
-  <header class="site-header">
-    <nav class="main-nav">
-      <div class="nav-logo">
-        <a href="#">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZxlBhuAe5a2Quu-_DVHCVdPwH4Bk0EPNT6g&s" alt="Bakery Logo" class="nav-logo" />
-        </a>
-      </div>
-      <div class="nav-links">
-        <a href="#">Product</a>
-        <a href="#">Features</a>
-        <a href="#">Marketplace</a>
-        <a href="#">Company</a>
-      </div>
-      <div class="nav-login">
-        <a href="#">Log in <span aria-hidden="true">&rarr;</span></a>
-      </div>
-    </nav>
-  </header>
+  <div id="header-component"></div>
 
   <div class="hero-wrapper">
 
+    <!-- gradient blobs -->
     <div class="gradient-blob gradient-blob--top" aria-hidden="true">
       <div></div>
     </div>
-
     <div class="gradient-blob gradient-blob--bottom" aria-hidden="true">
       <div></div>
     </div>
@@ -70,233 +56,10 @@
   </div> <!-- /hero-wrapper -->
 
   <!-- Bestsellers -->
-  <section class="section" id="bestsellers">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">Bestsellers</h2>
-      </div>
-
-      <div class="carousel">
-        <button class="carousel-btn" type="button" data-carousel="prev" aria-label="Previous">
-          &#9664;
-        </button>
-
-        <div class="carousel-track" id="bestsellersTrack" tabindex="0" aria-label="Bestsellers list">
-          <article class="product-card">
-            <a class="product-card__media" href="product.html">
-              <img
-                      class="product-card__img"
-                      src="images/product-1.jpg"
-                      alt="Sourdough bread"
-                      loading="lazy"
-              />
-            </a>
-
-            <div class="product-card__content">
-              <h3 class="product-card__title">
-                <a href="product.html">Sourdough Bread</a>
-              </h3>
-
-              <p class="product-card__desc">
-                Crispy crust, soft inside. Fermented 24h for extra flavor.
-              </p>
-
-              <div class="product-card__bottom">
-                <div class="product-card__price">€4.50</div>
-
-                <button
-                        class="product-card__btn"
-                        type="button"
-                        data-add-to-cart
-                        data-id="bread-001"
-                        data-name="Sourdough Bread"
-                        data-price="4.50"
-                >
-                  Add to cart
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <a class="product-card__media" href="product.html">
-              <img
-                      class="product-card__img"
-                      src="images/product-1.jpg"
-                      alt="Sourdough bread"
-                      loading="lazy"
-              />
-            </a>
-
-            <div class="product-card__content">
-              <h3 class="product-card__title">
-                <a href="product.html">Sourdough Bread</a>
-              </h3>
-
-              <p class="product-card__desc">
-                Crispy crust, soft inside. Fermented 24h for extra flavor.
-              </p>
-
-              <div class="product-card__bottom">
-                <div class="product-card__price">€4.50</div>
-
-                <button
-                        class="product-card__btn"
-                        type="button"
-                        data-add-to-cart
-                        data-id="bread-001"
-                        data-name="Sourdough Bread"
-                        data-price="4.50"
-                >
-                  Add to cart
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <a class="product-card__media" href="product.html">
-              <img
-                      class="product-card__img"
-                      src="images/product-1.jpg"
-                      alt="Sourdough bread"
-                      loading="lazy"
-              />
-            </a>
-
-            <div class="product-card__content">
-              <h3 class="product-card__title">
-                <a href="product.html">Sourdough Bread</a>
-              </h3>
-
-              <p class="product-card__desc">
-                Crispy crust, soft inside. Fermented 24h for extra flavor.
-              </p>
-
-              <div class="product-card__bottom">
-                <div class="product-card__price">€4.50</div>
-
-                <button
-                        class="product-card__btn"
-                        type="button"
-                        data-add-to-cart
-                        data-id="bread-001"
-                        data-name="Sourdough Bread"
-                        data-price="4.50"
-                >
-                  Add to cart
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <a class="product-card__media" href="product.html">
-              <img
-                      class="product-card__img"
-                      src="images/product-1.jpg"
-                      alt="Sourdough bread"
-                      loading="lazy"
-              />
-            </a>
-
-            <div class="product-card__content">
-              <h3 class="product-card__title">
-                <a href="product.html">Sourdough Bread</a>
-              </h3>
-
-              <p class="product-card__desc">
-                Crispy crust, soft inside. Fermented 24h for extra flavor.
-              </p>
-
-              <div class="product-card__bottom">
-                <div class="product-card__price">€4.50</div>
-
-                <button
-                        class="product-card__btn"
-                        type="button"
-                        data-add-to-cart
-                        data-id="bread-001"
-                        data-name="Sourdough Bread"
-                        data-price="4.50"
-                >
-                  Add to cart
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <a class="product-card__media" href="product.html">
-              <img
-                      class="product-card__img"
-                      src="images/product-1.jpg"
-                      alt="Sourdough bread"
-                      loading="lazy"
-              />
-            </a>
-
-            <div class="product-card__content">
-              <h3 class="product-card__title">
-                <a href="product.html">Sourdough Bread</a>
-              </h3>
-
-              <p class="product-card__desc">
-                Crispy crust, soft inside. Fermented 24h for extra flavor.
-              </p>
-
-              <div class="product-card__bottom">
-                <div class="product-card__price">€4.50</div>
-
-                <button
-                        class="product-card__btn"
-                        type="button"
-                        data-add-to-cart
-                        data-id="bread-001"
-                        data-name="Sourdough Bread"
-                        data-price="4.50"
-                >
-                  Add to cart
-                </button>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <button class="carousel-btn" type="button" data-carousel="next" aria-label="Next">
-          &#9654;
-        </button>
-      </div>
-    </div>
-  </section>
+  <div id="product-listings-component"></div>
 
   <!-- Shop by category -->
-  <section class="section" id="categories">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">Shop by category</h2>
-      </div>
-
-      <div class="categories-grid">
-        <a class="category-card" href="#">
-          <span>Bread</span>
-        </a>
-        <a class="category-card" href="#">
-          <span>Pastries</span>
-        </a>
-        <a class="category-card" href="#">
-          <span>Cakes</span>
-        </a>
-        <a class="category-card" href="#">
-          <span>Cookies</span>
-        </a>
-      </div>
-
-      <div class="categories-more">
-        <a href="#">More...</a>
-      </div>
-    </div>
-  </section>
+  <div id="categories-component"></div>
 
   <!-- Why us -->
   <section class="section section--why" id="why">
@@ -314,52 +77,9 @@
   </section>
 
   <!-- Footer -->
-  <footer class="site-footer" id="footer">
-    <div class="container footer-inner">
-      <div class="footer-links">
-        <a href="#">Contact</a>
-        <span class="sep">|</span>
-        <a href="#">Terms &amp; Conditions</a>
-        <span class="sep">|</span>
-        <a href="#">Delivery</a>
-        <span class="sep">|</span>
-        <a href="#">Payment</a>
-        <span class="sep">|</span>
-        <a href="#">Store Locations</a>
-        <span class="sep">|</span>
-        <a href="#">Returns &amp; Complaints</a>
-      </div>
-
-      <div class="footer-logo">
-        <span>logo</span>
-        <span class="footer-logo-box" aria-hidden="true">✕</span>
-      </div>
-    </div>
-  </footer>
+  <div id="footer-component"></div>
 
 </div> <!-- /site-wrapper -->
-
-<script>
-  // Bestsellers carousel scroll
-  const track = document.getElementById('bestsellersTrack');
-
-  function scrollByCard(dir) {
-    const card = track.querySelector('.product-card');
-    const gap = 16;
-    const w = card ? card.getBoundingClientRect().width : 240;
-    track.scrollBy({ left: dir * (w + gap), behavior: 'smooth' });
-  }
-
-  document.querySelectorAll('[data-carousel]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const dir = btn.dataset.carousel === 'next' ? 1 : -1;
-      scrollByCard(dir);
-    });
-  });
-</script>
-
-</body>
-</html></div>
 
 </body>
 </html>

@@ -1,0 +1,35 @@
+.carousel {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  gap: 1rem;
+  align-items: center;
+  border-top: 1px solid rgba(0,0,0,.08);
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  padding: 1.25rem 0;
+}
+
+.carousel-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  overflow: auto;
+  --scroll-snap-type: x mandatory;
+  padding: 6px 2px;
+  scrollbar-width: thin;
+  min-width: 0;
+}
+
+

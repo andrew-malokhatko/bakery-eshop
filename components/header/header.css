@@ -1,0 +1,62 @@
+.site-header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 50;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+}
+
+/* Logo */
+.nav-logo a {
+  display: flex;
+  align-items: center;
+  margin: -0.375rem;
+  padding: 0.375rem;
+}
+
+.nav-logo {
+  height: 3rem;
+  width: auto;
+  display: block;
+}
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.nav-links a {
+  font-size: var(--fs-sm);
+  line-height: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.nav-links a:hover {
+  color: var(--color-text-hover);
+}
+
+/* Login */
+.nav-login {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-login a {
+  font-size: var(--fs-sm);
+  line-height: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.nav-login a:hover {
+  color: var(--color-text-hover);
+}

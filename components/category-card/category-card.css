@@ -1,0 +1,23 @@
+.category-card {
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 24px;
+  background: var(--color-bg);
+  min-height: 120px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.category-card::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 2px solid rgba(0,0,0,.18);
+  border-radius: 20px;
+  opacity: 0.35;
+}
+
+.category-card span {
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
