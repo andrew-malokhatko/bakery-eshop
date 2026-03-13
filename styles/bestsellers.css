@@ -1,0 +1,26 @@
+.bestsellers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: var(--color-text-primary);
+    margin-top: 5rem;
+}
+
+.bestsellers .title {
+    font-size: var(--fs-4xl);
+    margin-bottom: 1.5rem;
+}
+
+.bestsellers .products {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.bestsellers .products > * {
+    flex: 1 1 0;
+    min-width: 0;
+}

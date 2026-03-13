@@ -1,0 +1,52 @@
+@import "styles/header.css";
+@import "styles/hero.css";
+@import "styles/bestsellers.css";
+@import "styles/product-card.css";
+@import "styles/categories.css";
+@import "styles/category-card.css";
+
+:root {
+  --color-bg:           #ffffff;
+  --color-text-primary: #111827;
+  --color-text-muted:   #6b7280;
+  --color-text-subtle:  #9ca3af;
+  --color-text-hover:   #6b7280;
+  --color-text-inverse: #ffffff;
+
+  --color-btn-primary:        #fdf2f8;
+  --color-btn-primary-hover:  #fdedf6;
+  --color-btn-primary-focus:  #ffd9ee;
+	--color-btn-text: 					#7e22ce;
+
+	--fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+	--fs-xl: 1.25rem;
+	--fx-2xl: 1.5rem;
+  --fs-3xl: 1.85rem;
+  --fs-4xl: 2.25rem;
+	--fs-5xl: 3rem;
+	--fs-6xl: 3.75rem;
+	--fs-7xl: 4.5rem;
+	
+	--w-sm: 36rem; /* 576 px */
+	--w-lg: 64rem; /* 1024px */
+	--w-xl: 80rem; /* 1280px */
+
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.body {
+	margin: auto;
+	background-color: var(--color-blob-to);
+}
+
+.site-wrapper {
+	max-width: var(--w-xl);
+	margin: 0 auto;
+}
+

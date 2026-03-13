@@ -1,0 +1,30 @@
+.category-card {
+    display: flex;
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 16rem;
+    /*align-items: flex-end;*/
+    padding: 1.25rem;
+    border-radius: 16px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--color-bg);
+    text-decoration: none;
+    color: var(--color-text-inverse);
+    font-size: var(--fs-xl);
+    font-weight: 700;
+    position: relative;
+}
+/* 
+.category-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+} */
+
+/* .category-card span {
+    position: relative;
+    z-index: 1;
+} */

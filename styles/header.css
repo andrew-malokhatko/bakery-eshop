@@ -1,0 +1,41 @@
+.header {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+    color: var(--color-text-primary);
+}
+
+.header > .logo,
+.header-links {
+	display: flex;
+	flex: 1 1 0;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.header-links > a {
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.header > .logo {
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.header > .logo img {
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+
+.header > .login {
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    justify-content: flex-end;
+}
