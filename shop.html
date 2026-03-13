@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <link rel="stylesheet" href="styles.css" />
+      <script defer src="components/product-card.js"></script>
+      <script defer src="components/shop-actions.js"></script>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <header class="header">
+    <a class="logo" href="#">
+      <img src="https://placehold.co/400x300/fdf2f8/7e22ce?text=Logo" alt="Bakery Logo">
+    </a>
+    <nav class="header-links">
+      <a href="#">Hello</a>
+      <a href="#">World</a>
+      <a href="#">Here</a>
+    </nav>
+    <a class="login">Log in</a>
+  </header>
+
+  <section class="shop-toolbar">
+    <form class="search-bar" id="product-search">
+      <input type="text" id="search-input" placeholder="Search product..." name="search" />
+      <button class="search-button">Search</button>
+    </form>
+
+    <div class="shop-actions">
+      <div class="toolbar-dropdown">
+        <button type="button" class="button filter-toggle">Filter</button>
+        <div class="dropdown-pannel">
+          <h3>Filters</h3>
+          <div class="filter-group">
+            <h4>Product Type</h4>
+            <label>
+              <input type="checkbox" name="type" value="Bread"/>Bread
+            </label>
+            <label>
+              <input type="checkbox" name="type" value="Pastries"/>Pastries
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Taste</h4>
+            <label>
+              <input type="checkbox" name="taste" value="Sweet"/>Sweet
+            </label>
+            <label>
+              <input type="checkbox" name="taste" value="Savory"/>Savory
+            </label>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="toolbar-dropdown">
+        <button type="button" class="button sort-toggle">Sort by</button>
+        <div class="dropdown-pannel">
+          <div class="sort-options">
+            <label>
+              <input type="radio" name="sort" value="popular" checked />
+              <span>Popular</span>
+            </label>
+
+            <label>
+              <input type="radio" name="sort" value="cheap" />
+              <span>Cheap to expensive</span>
+            </label>
+
+            <label>
+              <input type="radio" name="sort" value="expensive" />
+              <span>Expensive to cheap</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bestsellers">
+    <div class="products">
+      <product-card></product-card>
+      <product-card></product-card>
+      <product-card></product-card>
+      <product-card></product-card>
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>

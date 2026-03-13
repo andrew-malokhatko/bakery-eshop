@@ -1,0 +1,44 @@
+.shop-actions .button {
+    width: 9rem;
+    height: 2rem;
+    background-color: transparent;
+    border-radius: 6px;
+    font-weight: 700;
+    color: var(--color-btn-text);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--color-btn-text);
+    transition: transform 120ms ease, background-color 220ms ease;
+}
+
+.shop-actions .button:hover {
+    background-color: var(--color-btn-primary-hover);
+    transform: scale(1.03);
+}
+
+.shop-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.toolbar-dropdown {
+    position: relative;
+}
+
+.dropdown-pannel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 280px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    display: none;
+    z-index: 10;
+}
+
+.toolbar-dropdown.open .dropdown-pannel {
+    display: block;
+}
