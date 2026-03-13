@@ -4,6 +4,8 @@
 @import "styles/product-card.css";
 @import "styles/categories.css";
 @import "styles/category-card.css";
+@import "styles/shop-toolbar.css";
+@import "styles/shop-actions.css";
 
 :root {
   --color-bg:           #ffffff;
