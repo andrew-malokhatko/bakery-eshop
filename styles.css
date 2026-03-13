@@ -4,6 +4,7 @@
 @import "styles/product-card.css";
 @import "styles/categories.css";
 @import "styles/category-card.css";
+@import "styles/review.css";
 @import "styles/shop-toolbar.css";
 @import "styles/shop-actions.css";
 
@@ -25,7 +26,7 @@
   --fs-base: 1rem;
   --fs-lg: 1.125rem;
 	--fs-xl: 1.25rem;
-	--fx-2xl: 1.5rem;
+	--fs-2xl: 1.5rem;
   --fs-3xl: 1.85rem;
   --fs-4xl: 2.25rem;
 	--fs-5xl: 3rem;
