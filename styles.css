@@ -7,9 +7,11 @@
 @import "styles/review.css";
 @import "styles/shop-toolbar.css";
 @import "styles/shop-actions.css";
+@import "styles/footer.css";
 
 :root {
   --color-bg:           #ffffff;
+  --color-bg-muted:     #fcfcfc;
   --color-text-primary: #111827;
   --color-text-muted:   #6b7280;
   --color-text-subtle:  #9ca3af;
