@@ -1,0 +1,45 @@
+.quantity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 0;
+}
+
+.quantity > button  {
+    width: 40px;
+    height: 100%;
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1;
+    display: grid;
+    place-items: center;
+}
+
+.quantity .decrease {
+    border-radius: 14px 0 0 14px;
+}
+
+.quantity .increase {
+    border-radius: 0 14px 14px 0;
+}
+
+.quantity > button:hover  {
+    background-color: var(--color-bg-hover);
+}
+
+.quantity > input  {
+    width: 44px;
+    height: 100%;
+    border: none;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+    text-align: center;
+    font-weight: 700;
+    outline: none;
+    appearance: textfield;
+}

@@ -8,10 +8,13 @@
 @import "styles/shop-toolbar.css";
 @import "styles/shop-actions.css";
 @import "styles/footer.css";
+@import "styles/product.css";
+@import "styles/quantity-input.css";
 
 :root {
   --color-bg:           #ffffff;
   --color-bg-muted:     #fcfcfc;
+  --color-bg-hover:     #fafafa;
   --color-text-primary: #111827;
   --color-text-muted:   #6b7280;
   --color-text-subtle:  #9ca3af;
@@ -22,6 +25,8 @@
   --color-btn-primary-hover:  #fdedf6;
   --color-btn-primary-focus:  #ffd9ee;
 	--color-btn-text: 					#7e22ce;
+
+  --color-border: rgba(0, 0, 0, 0.15);
 
 	--fs-xs: 0.75rem;
   --fs-sm: 0.875rem;

@@ -1,0 +1,94 @@
+.product {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5rem;
+    gap: 8rem;  
+}
+
+.product > img {
+    border-radius: 2rem;
+}
+
+.product .content {
+    display: flex;
+    flex-direction: column;
+}
+
+.product .content .title {
+    font-size: var(--fs-4xl);
+}
+
+.product .content .desc {
+    font-size: var(--fs-lg);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.product .content > hr {
+    border: solid;
+    border-width: 1px;
+    width: 100%;
+    border-color: var(--color-border);
+}
+
+.product .content .price {
+    font-size: var(--fs-4xl);
+    font-weight: 700;
+}
+
+.product .content .actions {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.product .content .actions > button  {
+    width: 16rem;
+    height: 3rem;
+    border-radius: 1rem;
+    background-color: var(--color-btn-primary);
+    border-width: 2px;
+    border-color: var(--color-btn-text);
+    color: var(--color-btn-text);
+    font-weight: 700;
+    transition: transform 220ms ease;
+}
+
+.product .content .actions > button:hover  {
+    transform: scale(1.03);
+}
+
+.product-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5rem;
+    gap: 8rem;
+}
+
+.product-info .desc {
+    flex: 4;
+}
+
+.product-info .ingredients {
+    flex: 1;
+}
+
+.product-info .allergens {
+    flex: 1;
+}
+
+.product-info h2 {
+    font-size: var(--fs-2xl);
+}
+
+.product-info ul {
+    padding-left: 1rem;
+}
+
+.product-info p, li {
+    font-size: var(--fs-base);
+    line-height: 1.5;
+}
+
