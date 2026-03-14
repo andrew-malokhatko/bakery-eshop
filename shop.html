@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Shop</title>
-    <link rel="stylesheet" href="styles.css" />
-      <script defer src="components/product-card.js"></script>
-      <script defer src="components/shop-actions.js"></script>
+  <meta charset="UTF-8" />
+  <title>Shop</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="components/product-card.js"></script>
 </head>
 <body>
 <div class="site-wrapper">
@@ -22,73 +21,103 @@
     <a class="login">Log in</a>
   </header>
 
-  <section class="shop-toolbar">
-    <form class="search-bar" id="product-search">
-      <input type="text" id="search-input" placeholder="Search product..." name="search" />
-      <button class="search-button">Search</button>
-    </form>
+  <section class="shop-page">
+    <div class="shop-main">
+      <form class="search-bar" id="product-search">
+        <input type="text" id="search-input" placeholder="Search product..." name="search" />
+        <button class="search-button" type="submit">Search</button>
+      </form>
 
-    <div class="shop-actions">
-      <div class="toolbar-dropdown">
-        <button type="button" class="button filter-toggle">Filter</button>
-        <div class="dropdown-pannel">
-          <h3>Filters</h3>
-          <div class="filter-group">
-            <h4>Product Type</h4>
-            <label>
-              <input type="checkbox" name="type" value="Bread"/>Bread
-            </label>
-            <label>
-              <input type="checkbox" name="type" value="Pastries"/>Pastries
-            </label>
-          </div>
+      <div class="products">
+        <product-card title="Croissant" price="2.20"></product-card>
+        <product-card title="Chocolate Roll" price="3.10"></product-card>
+        <product-card title="Baguette" price="1.90"></product-card>
+        <product-card title="Blueberry Muffin" price="2.80"></product-card>
 
-          <div class="filter-group">
-            <h4>Taste</h4>
-            <label>
-              <input type="checkbox" name="taste" value="Sweet"/>Sweet
-            </label>
-            <label>
-              <input type="checkbox" name="taste" value="Savory"/>Savory
-            </label>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="toolbar-dropdown">
-        <button type="button" class="button sort-toggle">Sort by</button>
-        <div class="dropdown-pannel">
-          <div class="sort-options">
-            <label>
-              <input type="radio" name="sort" value="popular" checked />
-              <span>Popular</span>
-            </label>
-
-            <label>
-              <input type="radio" name="sort" value="cheap" />
-              <span>Cheap to expensive</span>
-            </label>
-
-            <label>
-              <input type="radio" name="sort" value="expensive" />
-              <span>Expensive to cheap</span>
-            </label>
-          </div>
-        </div>
+        <product-card title="Cinnamon Bun" price="2.60"></product-card>
+        <product-card title="Sourdough Bread" price="3.50"></product-card>
+        <product-card title="Apple Pie" price="4.20"></product-card>
+        <product-card title="Donut" price="1.80"></product-card>
       </div>
     </div>
+
+    <aside class="shop-sidebar">
+      <section class="sorting-panel">
+        <h3>Sorting</h3>
+
+        <label class="sort-option">
+          <input type="radio" name="sort" value="popular" checked />
+          <span>Popular</span>
+        </label>
+
+        <label class="sort-option">
+          <input type="radio" name="sort" value="cheap" />
+          <span>Cheap to expensive</span>
+        </label>
+
+        <label class="sort-option">
+          <input type="radio" name="sort" value="expensive" />
+          <span>Expensive to cheap</span>
+        </label>
+
+        <button type="button" class="panel-apply-button">Apply</button>
+      </section>
+
+      <section class="filters-panel">
+        <h3>Filters</h3>
+
+        <div class="filter-group">
+          <h4>Product Type</h4>
+          <label class="filter-option">
+            <input type="checkbox" name="type" value="Bread" />
+            <span>Bread</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="type" value="Pastries" />
+            <span>Pastries</span>
+          </label>
+        </div>
+
+        <div class="filter-group">
+          <h4>Taste</h4>
+          <label class="filter-option">
+            <input type="checkbox" name="taste" value="Sweet" />
+            <span>Sweet</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="taste" value="Savory" />
+            <span>Savory</span>
+          </label>
+        </div>
+
+        <div class="filter-group">
+          <h4>Preparation</h4>
+          <label class="filter-option">
+            <input type="checkbox" name="preparation" value="Freshly Baked" />
+            <span>Freshly Baked</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="preparation" value="Gluten-Free" />
+            <span>Gluten-Free</span>
+          </label>
+        </div>
+
+        <div class="filter-group">
+          <h4>Ingredients</h4>
+          <label class="filter-option">
+            <input type="checkbox" name="ingredients" value="With Chocolate" />
+            <span>With Chocolate</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="ingredients" value="With Fruit" />
+            <span>With Fruit</span>
+          </label>
+        </div>
+
+        <button type="button" class="panel-apply-button">Apply</button>
+      </section>
+    </aside>
   </section>
-
-  <div class="bestsellers">
-    <div class="products">
-      <product-card></product-card>
-      <product-card></product-card>
-      <product-card></product-card>
-      <product-card></product-card>
-    </div>
-  </div>
-
 
 </div>
 </body>
