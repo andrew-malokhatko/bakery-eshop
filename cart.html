@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Bakery</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="components/product-card.js"></script>
+    <script defer src="components/category-card.js"></script>
+    <script defer src="components/quantity-input.js"></script>
+    <script defer src="components/cart-entry.js"></script>
+</head>
+
+<body>
+    <div class="site-wrapper">
+    
+    <header class="header">
+        <a class="logo">
+            <img src="https://placehold.co/100x100/fdf2f8/7e22ce?text=Logo" alt="Bakery Logo">
+        </a>
+        <nav class="header-links">
+            <a href="#">Shop</a>
+            <a href="#">World</a>
+            <a href="#">Here</a>
+        </nav>
+        <a class="login">Log in</a>
+    </header>
+
+    <div class="cart">
+        <div class="content">
+            <cart-entry></cart-entry>
+            <cart-entry></cart-entry>
+            <cart-entry></cart-entry>
+        </div>
+        <div class="sidebar">
+            <h2>Cart Summary</h2>
+            <ul class="sumup">
+                <!-- TODO: separate small component-->
+                <div class="entry">
+                    <span>Product1</span>
+                    <span>€24.99</span>
+                </div>
+                <div class="entry">
+                    <span>Product1</span>
+                    <span>€24.99</span>
+                </div>
+                <div class="entry">
+                    <span>Product1</span>
+                    <span>€24.99</span>
+                </div>
+                <div class="entry">
+                    <span>Product1</span>
+                    <span>€24.99</span>
+                </div>
+            </ul>
+            <hr>
+            <div class="total">
+                <span>Total: </span>
+                <span>€129.59</span>
+            </div>
+            <button>Checkout</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+		<div class="social">
+			<a href="#" aria-label="Instagram">
+				<img src="resources/instagram.svg" alt="" class="icon" />
+			</a>
+			<a href="#" aria-label="Facebook">
+				<img src="resources/facebook.svg" alt="" class="icon" />
+			</a>
+			<a href="#" aria-label="TikTok">
+				<img src="resources/tiktok.svg" alt="" class="icon" />
+			</a>
+		</div>
+    	<div class="links">
+			<a href="#">Contact</a>
+			<a href="#">Terms &amp; Conditions</a>
+			<a href="#">Delivery</a>
+			<a href="#">Payment</a>
+      	</div>
+	  	<img src="https://placehold.co/100x100/fdf2f8/7e22ce?text=Logo" alt="Bakery logo"/>
+    </footer>
+
+    </div>
+</body>
+
+</html>

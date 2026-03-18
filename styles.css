@@ -11,6 +11,8 @@
 @import "styles/product.css";
 @import "styles/quantity-input.css";
 @import "styles/auth.css";
+@import "styles/cart.css";
+@import "styles/cart-entry.css";
 
 :root {
   --color-bg:           #ffffff;

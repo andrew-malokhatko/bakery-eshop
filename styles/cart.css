@@ -1,0 +1,77 @@
+.cart {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 20rem;
+	gap: 4rem;
+	align-items: start;
+	margin-top: 2rem;
+}
+
+
+.cart-entry .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    grid-column: 1;
+}
+
+.cart .sidebar {
+	grid-column: 2;
+	grid-row: 1 / -1;
+	align-self: start;
+    background-color: var(--color-bg-muted);
+    border: solid 2px var(--color-border);
+    padding: 1rem 2rem 1rem 2rem;
+    border-radius: 1rem;
+}
+
+.cart .sidebar > h2 {
+    font-size: var(--fs-3xl);
+    margin-top: 1rem;
+}
+
+.cart .sidebar > ul {
+    padding: 0;
+}
+
+.cart .sidebar .entry {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    color: var(--color-text-muted)
+}
+
+.cart .sidebar > hr {
+    height: 1px;
+    color: var(--color-border);
+}
+
+.cart .sidebar .total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2rem;
+    font-size: var(--fs-2xl);
+    font-weight: 700;
+}
+
+.cart .sidebar > button {
+    margin-top: 2rem;
+    width: 100%;
+    height: 2.5rem;
+    background-color: var(--color-btn-primary);
+    border: solid 2px var(--color-btn-text);
+    color: var(--color-btn-text);
+    border-radius: 0.75rem;
+    transition: transform 220ms ease;
+}
+
+.cart .sidebar > button:hover {
+    transform: scale(1.03);
+    background-color: var(--color-btn-primary-hover);
+}
+
+
+
+
+
