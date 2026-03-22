@@ -1,0 +1,71 @@
+.profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 7rem;
+    height: var(--h-xl);
+}
+
+.profile .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    border-right: solid 1px var(--color-border);
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+
+.profile .left > span {
+    font-size: var(--fs-lg);
+}
+
+.profile .left > img {
+    border-radius: 100%;
+}
+
+
+.profile .content .name {
+    font-size: var(--fs-5xl);
+}
+
+.profile .content .text {
+    font-size: var(--fs-3xl);
+    margin-bottom: 4rem;
+}
+
+.profile .content .row {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.profile .content .row > input {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.4rem;
+    font-size: var(--fs-base);
+    color: var(--color-text-primary);
+}
+
+.profile .content .gender-input {
+    border: none;
+    margin-top: 3rem;
+    padding: 0;
+}
+
+.profile .content .gender-input input[type="radio"] {
+    accent-color: var(--color-btn-text);
+    width: 1rem;
+    height: 1rem;
+}
+
+.profile .content .gender-input label {
+    font-size: var(--fs-sm);
+    cursor: pointer;
+    padding-right: 1rem;
+}
+

@@ -1,0 +1,20 @@
+.profile-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: 100%;
+}
+
+.profile-input label {
+    display: block;
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+}
+
+.profile-input input {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.4rem;
+    font-size: var(--fs-base);
+    color: var(--color-text-primary);
+}

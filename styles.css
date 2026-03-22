@@ -13,6 +13,8 @@
 @import "styles/auth.css";
 @import "styles/cart.css";
 @import "styles/cart-entry.css";
+@import "styles/profile.css";
+@import "styles/profile-input.css";
 
 :root {
   --color-bg:           #ffffff;
@@ -46,6 +48,10 @@
 	--w-sm: 36rem; /* 576 px */
 	--w-lg: 64rem; /* 1024px */
 	--w-xl: 80rem; /* 1280px */
+
+  --h-sm: 24rem; /* 384 px */
+	--h-lg: 36rem; /* 576px */
+	--h-xl: 40rem; /* 1024px */
 
 }
 

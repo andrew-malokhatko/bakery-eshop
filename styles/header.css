@@ -7,7 +7,8 @@
 }
 
 .header > .logo,
-.header-links {
+.header > .header-links,
+.header > .profile-image  {
 	display: flex;
 	flex: 1 1 0;
 	flex-direction: row;
@@ -39,4 +40,13 @@
     flex: 1 1 0;
     align-items: center;
     justify-content: flex-end;
+}
+
+.header .profile-image {
+    justify-content: flex-end;
+}
+
+.header .profile-image > img {
+    border-radius: 100%;
+    scale: 0.55;
 }

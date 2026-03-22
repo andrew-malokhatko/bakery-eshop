@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Bakery</title>
+    <link rel="stylesheet" href="styles.css" />
+	<script defer src="components/product-card.js"></script>
+	<script defer src="components/category-card.js"></script>
+    <script defer src="components/quantity-input.js"></script>
+    <script defer src="components/profile-input.js"></script>
+</head>
+
+<body>
+    <div class="site-wrapper">
+
+    <header class="header">
+        <a class="logo">
+            <img src="https://placehold.co/100x100/fdf2f8/7e22ce?text=Logo" alt="Bakery Logo">
+        </a>
+        <nav class="header-links">
+            <a href="#">Shop</a>
+            <a href="#">World</a>
+            <a href="#">Here</a>
+        </nav>
+        <a class="profile-image">
+            <img class src="https://placehold.co/100x100/000000/000000?text=f">
+        </a>
+    </header>
+
+    <div class="profile">
+        <div class="left">
+            <span>user.email@example.com</span>
+            <img class src="https://placehold.co/400x400/000000/000000?text=f">
+        </div>  
+        <div class="content">
+            <h1 class="name">Bakery</h1>
+            <h2 class="text">Welcome Back!</h2>
+
+            <div class="row">
+                <profile-input label="First Name" type="text" value="John" name="firstName"></profile-input>
+                <profile-input label="Last Name" type="text" value="Wick" name="lastName"></profile-input>
+            </div>
+
+            <div class="row">
+                <profile-input label="Email" type="email" value="user.email@example.com" name="email"></profile-input>
+                <profile-input label="Contact Number" type="tel" value="+421984378328" name="contactNumber"></profile-input>
+            </div>
+            
+            <div class="row">
+                <profile-input label="Birthdate" type="text" placeholder="DD" name="day"></profile-input>
+                <profile-input type="text" placeholder="MM" name="month"></profile-input>
+                <profile-input type="text" placeholder="YYYY" name="year"></profile-input>
+            </div>
+
+            <fieldset class="gender-input">
+                <input type="radio" id="male" checked />
+                <label for="male">Male</label>
+                <input type="radio" id="female" />
+                <label for="female">Female</label>
+                <input type="radio" id="other" />
+                <label for="other">Other</label>
+            </fieldset>
+
+        </div>
+    </div>
+
+    </div>
+</body>
+
+</html>
