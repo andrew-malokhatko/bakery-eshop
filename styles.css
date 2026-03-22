@@ -15,10 +15,11 @@
 @import "styles/cart-entry.css";
 @import "styles/profile.css";
 @import "styles/profile-input.css";
+@import "styles/contact.css";
 
 :root {
   --color-bg:           #ffffff;
-  --color-bg-muted:     #fcfcfc;
+  --color-bg-muted: #f6f6f6;
   --color-bg-hover:     #fafafa;
   --color-text-primary: #111827;
   --color-text-muted:   #6b7280;
@@ -27,7 +28,7 @@
   --color-text-inverse: #ffffff;
 
   --color-btn-primary:        #fdf2f8;
-  --color-btn-primary-hover:  #fdedf6;
+  --color-btn-primary-hover: #ffa5da;
   --color-btn-primary-focus:  #ffd9ee;
 	--color-btn-text: 					#7e22ce;
 
@@ -71,7 +72,7 @@
 
 .products {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.25rem;
     width: 100%;
     margin-top: 1.5rem;

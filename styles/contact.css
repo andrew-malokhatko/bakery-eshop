@@ -1,0 +1,146 @@
+.contact {
+    position: relative;
+    max-width: 62rem;
+    min-height: 32rem;
+    margin: 1.75rem auto 0;
+    padding: 2rem 24rem 3rem 2.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1.25rem;
+    background-color: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact .fullname,
+.contact .email,
+.contact .email_mes {
+    width: 100%;
+    max-width: 26rem;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 0 1.1rem;
+    color: var(--color-text-primary);
+    font-size: var(--fs-lg);
+    outline: none;
+}
+
+.contact .fullname,
+.contact .email {
+    height: 3.4rem;
+    margin-bottom: 1.25rem;
+}
+
+.contact .email_mes {
+    min-height: 9.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.contact .form-actions {
+    width: 100%;
+    max-width: 26rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.contact .form-actions .submit {
+    min-width: 10.5rem;
+    height: 3rem;
+    background-color: var(--color-btn-primary);
+    border: 2px solid var(--color-btn-text);
+    color: var(--color-btn-text);
+    border-radius: 0.8rem;
+    font-size: var(--fs-xl);
+    cursor: pointer;
+    transition: transform 220ms ease, background-color 220ms ease;
+}
+
+.contact-info-card {
+    position: absolute;
+    top: 15rem;
+    right: 9rem;
+    width: 25rem;
+    min-height: 31rem;
+    padding: 3.5rem 2rem;
+    border: 2px solid var(--color-border);
+    border-radius: 1.35rem;
+    background-color: var(--color-bg-muted);
+    z-index: 3;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.contact-chip {
+    width: 100%;
+    max-width: 15rem;
+    min-height: 3.3rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background-color: var(--color-btn-primary);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: var(--fs-xl);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 220ms ease, background-color 220ms ease;
+}
+
+.contact-chip.address {
+    min-height: 5.25rem;
+    line-height: 1.35;
+}
+
+.footer {
+    margin-top: 5rem;
+}
+
+@media (max-width: 1100px) {
+    .contact {
+        padding-right: 2.5rem;
+        padding-bottom: 2rem;
+    }
+
+    .contact-info-card {
+        position: static;
+        width: min(24rem, 100%);
+        min-height: 18rem;
+        margin: 2rem auto 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact {
+        margin-top: 1rem;
+        padding: 1.5rem;
+    }
+
+    .contact .fullname,
+    .contact .email,
+    .contact .email_mes,
+    .contact .form-actions {
+        max-width: 100%;
+    }
+
+    .contact-info-card {
+        width: 100%;
+        min-height: auto;
+        padding: 2rem 1rem;
+    }
+}
+
