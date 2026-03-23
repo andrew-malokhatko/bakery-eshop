@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Review order</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="site-wrapper">
+  <header class="header">
+    <a class="logo">
+      <img src="https://placehold.co/100x100/fdf2f8/7e22ce?text=Logo" alt="Bakery Logo">
+    </a>
+
+    <nav class="header-links" aria-label="Main navigation">
+      <a href="#">Shop</a>
+      <a href="#">About</a>
+      <a href="#">Delivery</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <a class="login">Log in</a>
+  </header>
+
+  <main class="checkout-review-page">
+    <section class="checkout-steps">
+      <div class="step-item completed">
+        <span class="step-number">1</span>
+        <span>Delivery</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-item completed">
+        <span class="step-number">2</span>
+        <span>Payment</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-item active">
+        <span class="step-number">3</span>
+        <span>Review</span>
+      </div>
+    </section>
+
+    <div class="checkout-review-layout">
+      <section class="checkout-review-main">
+        <div class="review-card">
+          <h1>Review your order</h1>
+          <p class="review-subtitle">
+            Check your order details before placing it.
+          </p>
+
+          <div class="review-section">
+            <div class="review-section-head">
+              <h2>Contact information</h2>
+              <a href="checkout.html">Edit</a>
+            </div>
+
+            <div class="review-info-box">
+              <div class="review-info-row">
+                <span>Email</span>
+                <span>hello@bakery.com</span>
+              </div>
+              <div class="review-info-row">
+                <span>Phone</span>
+                <span>+421 900 123 456</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-section">
+            <div class="review-section-head">
+              <h2>Shipping address</h2>
+              <a href="checkout.html">Edit</a>
+            </div>
+
+            <div class="review-info-box">
+              <div class="review-info-row">
+                <span>Name</span>
+                <span>Customer name</span>
+              </div>
+              <div class="review-info-row">
+                <span>Address</span>
+                <span>Main Street 12, Bratislava, 811 01, Slovakia</span>
+              </div>
+              <div class="review-info-row">
+                <span>Delivery</span>
+                <span>Standard delivery</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-section">
+            <div class="review-section-head">
+              <h2>Payment</h2>
+              <a href="checkout-payment.html">Edit</a>
+            </div>
+
+            <div class="review-info-box">
+              <div class="review-info-row">
+                <span>Method</span>
+                <span>Credit / Debit card</span>
+              </div>
+              <div class="review-info-row">
+                <span>Card</span>
+                <span>•••• •••• •••• 4281</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-section">
+            <div class="review-section-head">
+              <h2>Items</h2>
+              <a href="cart.html">Edit</a>
+            </div>
+
+            <div class="review-products">
+              <article class="review-product">
+                <div class="review-product-image">
+                  <img src="resources/product1.png" alt="Chocolate cake" />
+                </div>
+                <div class="review-product-info">
+                  <h3>Chocolate cake</h3>
+                  <p>Size: medium</p>
+                  <span>Qty: 1</span>
+                </div>
+                <div class="review-product-price">€24.99</div>
+              </article>
+
+              <article class="review-product">
+                <div class="review-product-image">
+                  <img src="resources/product2.png" alt="Cupcakes set" />
+                </div>
+                <div class="review-product-info">
+                  <h3>Cupcakes set</h3>
+                  <p>Vanilla mix</p>
+                  <span>Qty: 2</span>
+                </div>
+                <div class="review-product-price">€38.00</div>
+              </article>
+            </div>
+          </div>
+
+          <div class="review-note-box">
+            <label for="order-note">Order note</label>
+            <textarea id="order-note" placeholder="Add a note for your order..."></textarea>
+          </div>
+
+          <div class="review-actions">
+            <a href="checkout-payment.html" class="btn-secondary">Back</a>
+            <button type="button" class="btn-primary">Place order</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="checkout-review-sidebar">
+        <div class="sidebar-card review-summary-card">
+          <h2>Order summary</h2>
+
+          <div class="summary-list">
+            <div class="summary-row">
+              <span>Chocolate cake × 1</span>
+              <span>€24.99</span>
+            </div>
+            <div class="summary-row">
+              <span>Cupcakes set × 2</span>
+              <span>€38.00</span>
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="summary-meta">
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span>€62.99</span>
+            </div>
+            <div class="summary-row">
+              <span>Delivery</span>
+              <span>€4.90</span>
+            </div>
+          </div>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <span>€67.89</span>
+          </div>
+
+          <p class="summary-note">
+            By placing your order, you agree to our Terms &amp; Conditions.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="social">
+      <a href="#" aria-label="Instagram">
+        <img src="resources/instagram.svg" alt="" class="icon" />
+      </a>
+      <a href="#" aria-label="Facebook">
+        <img src="resources/facebook.svg" alt="" class="icon" />
+      </a>
+      <a href="#" aria-label="TikTok">
+        <img src="resources/tiktok.svg" alt="" class="icon" />
+      </a>
+    </div>
+
+    <div class="links">
+      <a href="contact.html">Contact</a>
+      <a href="#">Terms &amp; Conditions</a>
+      <a href="#">Delivery</a>
+      <a href="#">Payment</a>
+    </div>
+
+    <a class="logo" href="index.html" aria-label="Bakery home">
+      <img src="resources/logo.svg" alt="Bakery logo" />
+    </a>
+  </footer>
+</div>
+</body>
+</html>

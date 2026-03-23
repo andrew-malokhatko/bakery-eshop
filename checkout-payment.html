@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Payment</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+<div class="site-wrapper">
+
+  <header class="header">
+    <a class="logo">
+      <img src="https://placehold.co/100x100/fdf2f8/7e22ce?text=Logo" alt="Bakery Logo">
+    </a>
+    <nav class="header-links">
+      <a href="#">Shop</a>
+      <a href="#">World</a>
+      <a href="#">Here</a>
+    </nav>
+    <a class="login">Log in</a>
+  </header>
+
+  <main class="checkout-page">
+    <section class="checkout-steps">
+      <div class="step-item completed">
+        <span class="step-number">1</span>
+        <span>Delivery</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-item active">
+        <span class="step-number">2</span>
+        <span>Payment</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-item">
+        <span class="step-number">3</span>
+        <span>Review</span>
+      </div>
+    </section>
+
+    <div class="checkout-layout">
+      <section class="checkout-main">
+        <div class="checkout-card">
+          <h1>Payment</h1>
+          <p class="checkout-subtitle">Choose a payment method and review your order.</p>
+
+          <form class="checkout-form">
+            <div class="form-block">
+              <h2>Payment method</h2>
+
+              <div class="payment-options">
+                <label class="payment-option active">
+                  <input type="radio" name="payment" checked>
+                  <span>Credit / Debit card</span>
+                </label>
+
+                <label class="payment-option">
+                  <input type="radio" name="payment">
+                  <span>Cash on delivery</span>
+                </label>
+
+                <label class="payment-option">
+                  <input type="radio" name="payment">
+                  <span>Bank transfer</span>
+                </label>
+              </div>
+
+              <div class="form-grid">
+                <input class="full" type="text" placeholder="Cardholder name">
+                <input class="full" type="text" placeholder="Card number">
+                <input type="text" placeholder="MM / YY">
+                <input type="text" placeholder="CVV">
+              </div>
+            </div>
+
+            <div class="form-block">
+              <h2>Billing address</h2>
+              <label class="checkbox-line">
+                <input type="checkbox" checked>
+                <span>Same as shipping address</span>
+              </label>
+            </div>
+
+            <div class="form-block">
+              <h2>Review</h2>
+              <div class="review-box">
+                <div class="review-row">
+                  <span>Contact</span>
+                  <span>hello@email.com</span>
+                </div>
+                <div class="review-row">
+                  <span>Address</span>
+                  <span>Main Street 12, Bratislava</span>
+                </div>
+                <div class="review-row">
+                  <span>Delivery</span>
+                  <span>Standard delivery</span>
+                </div>
+                <div class="review-row">
+                  <span>Payment</span>
+                  <span>Credit / Debit card</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="checkout-actions">
+              <a href="checkout.html" class="btn-secondary">Back</a>
+              <button type="submit" class="btn-primary">Place order</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <aside class="checkout-sidebar">
+        <div class="sidebar-card">
+          <h2>Order summary</h2>
+
+          <div class="summary-list">
+            <div class="summary-row">
+              <span>Chocolate cake × 1</span>
+              <span>€24.99</span>
+            </div>
+            <div class="summary-row">
+              <span>Cupcakes set × 2</span>
+              <span>€38.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Cookies box × 1</span>
+              <span>€12.50</span>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="summary-meta">
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span>€75.49</span>
+            </div>
+            <div class="summary-row">
+              <span>Delivery</span>
+              <span>€4.90</span>
+            </div>
+          </div>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <span>€80.39</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="social">
+      <a href="#" aria-label="Instagram">
+        <img src="resources/instagram.svg" alt="" class="icon" />
+      </a>
+      <a href="#" aria-label="Facebook">
+        <img src="resources/facebook.svg" alt="" class="icon" />
+      </a>
+      <a href="#" aria-label="TikTok">
+        <img src="resources/tiktok.svg" alt="" class="icon" />
+      </a>
+    </div>
+    <div class="links">
+      <a href="#">Contact</a>
+      <a href="#">Terms &amp; Conditions</a>
+      <a href="#">Delivery</a>
+      <a href="#">Payment</a>
+    </div>
+    <img src="https://placehold.co/100x100/fdf2f8/7e22ce?text=Logo" alt="Bakery logo"/>
+  </footer>
+
+</div>
+</body>
+</html>
