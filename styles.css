@@ -79,3 +79,126 @@
     width: 100%;
     margin-top: 1.5rem;
 }
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* щоб декоративні/контентні картинки виглядали охайно */
+.hero img,
+.review > img,
+.category-card img,
+.product img,
+.profile-image img,
+.logo img {
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+/* hero */
+.hero > img {
+    width: min(18rem, 100%);
+    max-height: 18rem;
+    object-fit: contain;
+    border-radius: 0;
+}
+
+/* review image */
+.review > img {
+    width: 100%;
+    max-width: 28rem;
+    height: 20rem;
+}
+
+/* іконки в футері та соцмережах не треба розтягувати */
+.icon,
+.social img {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
+    border-radius: 0;
+}
+
+/* логотип */
+.logo img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: contain;
+    border-radius: 0;
+}
+
+/* товари — однаковий, лаконічний розмір карток */
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    align-items: stretch;
+}
+
+.products > * {
+    min-width: 0;
+    height: 100%;
+}
+
+/* фіксований розмір картинки саме для product-card */
+.product-card .image,
+.products .product-card .image {
+    width: 100%;
+    height: 14rem;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 1rem;
+}
+
+/* щоб весь контент картки був рівний */
+.product-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card .desc {
+    flex-grow: 1;
+}
+
+/* адаптивність */
+@media (max-width: 1100px) {
+    .products {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 800px) {
+    .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .product-card .image,
+    .products .product-card .image {
+        height: 12rem;
+    }
+
+    .review > img {
+        height: 16rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card .image,
+    .products .product-card .image {
+        height: 13rem;
+    }
+
+    .hero > img {
+        width: min(14rem, 100%);
+        max-height: 14rem;
+    }
+}

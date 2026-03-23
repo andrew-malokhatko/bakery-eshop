@@ -8,7 +8,7 @@ class ProductCard extends HTMLElement {
 
         this.outerHTML = `
         <a class="product-card" href="${href}">
-          <img class="image" src="${imgSrc}""/>
+          <img class="image" src="${imgSrc}"/>
           <p class="title">${title}</p>
           <p class="desc">${desc}</p>
           <div class="content">

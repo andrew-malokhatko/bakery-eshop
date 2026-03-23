@@ -13,14 +13,5 @@
 }
 
 .bestsellers .products {
-    display: flex;
-    flex-direction: row;
     width: 100%;
-    gap: 1rem;
-    align-items: stretch;
-}
-
-.bestsellers .products > * {
-    flex: 1 1 0;
-    min-width: 0;
 }
