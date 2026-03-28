@@ -1,0 +1,20 @@
+.admin-auth {
+    margin-top: 3rem;
+    justify-content: center;
+    gap: 0;
+}
+
+.admin-auth .content .name,
+.admin-auth .content .text {
+    text-align: center;
+}
+
+.admin-auth .content .log-in {
+    margin-top: 2rem;
+}
+
+.admin-auth .content .lost-password {
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+}
