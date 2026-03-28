@@ -35,12 +35,6 @@
     height: 100px;
 }
 
-.header > .login {
-    display: flex;
-    flex: 1 1 0;
-    align-items: center;
-    justify-content: flex-end;
-}
 
 .header .profile-image {
     justify-content: flex-end;
@@ -50,3 +44,39 @@
     border-radius: 100%;
     scale: 0.55;
 }
+
+.header > .header-actions {
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2rem;
+}
+
+.header > .header-actions .cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+    line-height: 1;
+    transform: translateY(-15px);
+}
+
+.header > .header-actions .cart img {
+    width: 1.75rem;
+    height: 1.75rem;
+    object-fit: contain;
+    display: block;
+}
+
+.header > .header-actions .login {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+    white-space: nowrap;
+    line-height: 1;
+}
+

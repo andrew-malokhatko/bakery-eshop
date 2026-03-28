@@ -18,6 +18,7 @@
 @import "styles/contact.css";
 @import "styles/checkout.css";
 @import "styles/checkout-review.css";
+@import "styles/order-success.css";
 
 :root {
   --color-bg:           #ffffff;
