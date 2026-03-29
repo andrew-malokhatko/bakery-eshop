@@ -1,6 +1,6 @@
 class ProductCard extends HTMLElement {
     connectedCallback() {
-        const href = this.getAttribute('href') ?? '#';
+        const href = this.getAttribute('href') ?? 'product.html';
         const imgSrc = this.getAttribute('img-src') ?? 'https://placehold.co/400x300/fdf2f8/7e22ce?text=Product';
         const title = this.getAttribute('title') ?? 'Product';
         const desc = this.getAttribute('desc') ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna';
