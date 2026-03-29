@@ -12,7 +12,7 @@ class ProductCard extends HTMLElement {
           <p class="title">${title}</p>
           <p class="desc">${desc}</p>
           <div class="content">
-            <p>€${price}</p>
+            <p>${price}€</p>
             <button>Add to cart</button>
           </div>
         </a>

@@ -8,6 +8,7 @@
 
 .product > img {
     border-radius: 2rem;
+    width: 100%;
 }
 
 .product .content {

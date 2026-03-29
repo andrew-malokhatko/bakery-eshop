@@ -22,11 +22,22 @@
     justify-content: center;
     text-decoration: none;
     color: inherit;
+    transition: transform 120ms ease;
+}
+
+
+.header-links > a:hover {
+    transform: translateY(3px);
 }
 
 .header > .logo {
     align-items: center;
     justify-content: flex-start;
+    transition: transform 120ms ease; 
+}
+
+header > .logo:hover {
+    transform: scale(1.02);
 }
 
 .header > .logo img {
@@ -80,3 +91,9 @@
     line-height: 1;
 }
 
+
+@media only screen and (max-width: 568px) {
+    .header > .header-links {
+        display: none;
+    }
+}

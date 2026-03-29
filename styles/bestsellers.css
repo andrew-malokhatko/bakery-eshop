@@ -15,3 +15,10 @@
 .bestsellers .products {
     width: 100%;
 }
+
+@media only screen and (max-width: 768px) {
+    .bestsellers .products {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}

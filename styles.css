@@ -24,54 +24,65 @@
 
 
 :root {
-  --color-bg:           #ffffff;
-  --color-bg-muted: #f6f6f6;
-  --color-bg-hover:     #fafafa;
-  --color-text-primary: #111827;
-  --color-text-muted:   #6b7280;
-  --color-text-subtle:  #9ca3af;
-  --color-text-hover:   #6b7280;
-  --color-text-inverse: #ffffff;
+    --color-bg: #ffffff;
+    --color-bg-muted: #f6f6f6;
+    --color-bg-hover: #fafafa;
+    --color-text-primary: #111827;
+    --color-text-muted: #6b7280;
+    --color-text-subtle: #9ca3af;
+    --color-text-hover: #6b7280;
+    --color-text-inverse: #ffffff;
 
-  --color-btn-primary:        #fdf2f8;
-  --color-btn-primary-hover: #ffa5da;
-  --color-btn-primary-focus:  #ffd9ee;
-	--color-btn-text: 					#7e22ce;
+    --color-btn-primary: #fdf2f8;
+    --color-btn-primary-hover: #ffa5da;
+    --color-btn-primary-focus: #ffd9ee;
+    --color-btn-text: #7e22ce;
 
-  --color-border: rgba(0, 0, 0, 0.15);
+    --color-border: rgba(0, 0, 0, 0.15);
 
-	--fs-xs: 0.75rem;
-  --fs-sm: 0.875rem;
-  --fs-base: 1rem;
-  --fs-lg: 1.125rem;
-	--fs-xl: 1.25rem;
-	--fs-2xl: 1.5rem;
-  --fs-3xl: 1.85rem;
-  --fs-4xl: 2.25rem;
-	--fs-5xl: 3rem;
-	--fs-6xl: 3.75rem;
-	--fs-7xl: 4.5rem;
-	
-	--w-sm: 36rem; /* 576 px */
-	--w-lg: 64rem; /* 1024px */
-	--w-xl: 80rem; /* 1280px */
+    --fs-xs: 0.75rem;
+    --fs-sm: 0.875rem;
+    --fs-base: 1rem;
+    --fs-lg: 1.125rem;
+    --fs-xl: 1.25rem;
+    --fs-2xl: 1.5rem;
+    --fs-3xl: 1.85rem;
+    --fs-4xl: 2.25rem;
+    --fs-5xl: 3rem;
+    --fs-6xl: 3.75rem;
+    --fs-7xl: 4.5rem;
 
-  --h-sm: 24rem; /* 384 px */
-	--h-lg: 36rem; /* 576px */
-	--h-xl: 40rem; /* 1024px */
+    --w-sm: 36rem;
+    /* 576 px */
+    --w-lg: 64rem;
+    /* 1024px */
+    --w-xl: 80rem;
+    /* 1280px */
+
+    --h-sm: 24rem;
+    /* 384 px */
+    --h-lg: 36rem;
+    /* 576px */
+    --h-xl: 40rem;
+    /* 1024px */
 
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 .body {
 	margin: auto;
 	background-color: var(--color-blob-to);
+    overflow-x: hidden;
+    padding: 0;
 }
 
 .site-wrapper {
+	width: 100%;
 	max-width: var(--w-xl);
 	margin: 0 auto;
 }
@@ -176,11 +187,7 @@ img {
     }
 }
 
-@media (max-width: 800px) {
-    .products {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
+@media (max-width: 768px) {
     .product-card .image,
     .products .product-card .image {
         height: 12rem;

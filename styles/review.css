@@ -24,32 +24,27 @@
     margin-top: 0;
 }
 
-.review .content .quote {
-    flex: 1 1 0;
-}
-
-.review .content .quote .text {
+.review .content .text {
     font-size: var(--fs-xl);
     line-height: 1.65;
+    flex: 1 1 0;
     width: 85%;
     margin: 0;
 }
 
-.review .content .quote .author {
-    margin: 1rem 0 0;
-    font-size: var(--fs-base);
-    font-weight: 700;
-    color: var(--color-text-muted);
-}
-
-/* @media (max-width: 900px) {
-    .review .content {
+ @media (max-width: 900px) {
+    .review {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+    }
+
+    .review .content {
+        align-items: center;
+        /* text-align: center; */
     }
 
     .review .content img {
         width: 100%;
         max-width: 480px;
     }
-} */
+}

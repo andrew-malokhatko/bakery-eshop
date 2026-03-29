@@ -1,9 +1,15 @@
 .hero {
     display: flex;
     flex-direction: column;
-    margin-top: 4rem;
+    margin-top: 2rem;
     align-items: center;
     color: var(--color-text-primary);
+    padding: 0 1rem;
+}
+
+.hero img {
+    height: auto;
+    object-fit: fill;
 }
 
 .hero .text {
@@ -11,6 +17,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .hero .title {
@@ -23,21 +30,23 @@
 .hero .desc {
     font-size: var(--fs-xl);
     text-align: center;
-    width: 50%;
+    width: 100%;
     margin-top: 0;
     margin-bottom: 2rem;
 }
 
-.hero .buttons {
+.hero .text .buttons {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     gap: 0.5rem;
+    width: 100%;
+    max-width: 20rem;
 }
 
-.hero .button {
-    width: 9rem;
-    height: 2rem;
+.hero .text .buttons > a{
+    width: 100%;
+    padding: 10px 5px 10px 5px;
     background-color: transparent;
     border-radius: 6px;
     font-weight: 700;
@@ -45,18 +54,50 @@
     border-width: 1px;
     border-style: solid;
     border-color: var(--color-btn-text);
+    text-align: center;
+    vertical-align: center;
+    text-decoration: none;
     transition: transform 120ms ease, background-color 220ms ease;
 }
 
-.hero .button:hover {
-    background-color: var(--color-btn-primary-hover);
+.hero .text .buttons > a:hover {
     transform: scale(1.03);
 }
 
-.hero .button.primary {
+.hero .text .buttons .primary {
     background-color: var(--color-btn-primary);   
 }
 
-.hero .button.primary:hover {
+.hero .text .buttons .primary:hover {
     background-color: var(--color-btn-primary-focus);   
+}
+
+.hero .text .buttons .secondary:hover {
+    background-color: var(--color-btn-primary-focus);   
+}
+
+/* Tablet and larger screens */
+@media only screen and (min-width: 768px) {
+    .hero {
+        margin-top: 4rem;
+        padding: 0;
+    }
+
+    .hero img {
+        max-width: 400px;
+    }
+
+    .hero .desc {
+        width: 50%;
+    }
+
+    .hero .text .buttons {
+        flex-direction: row;
+        width: auto;
+        max-width: none;
+    }
+
+    .hero .text .buttons > a{
+        width: 9rem;
+    }
 }
