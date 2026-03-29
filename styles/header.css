@@ -91,6 +91,34 @@ header > .logo:hover {
     line-height: 1;
 }
 
+.header.admin-header {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header.admin-header > .admin-logout-link,
+.header.admin-header > .logo {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+}
+
+.header.admin-header > .admin-logout-link {
+    justify-content: flex-end;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: var(--fs-base);
+    transition: transform 120ms ease;
+}
+
+.header.admin-header > .admin-logout-link:hover {
+    transform: translateY(2px);
+}
+
+.header.admin-header > .logo {
+    justify-content: flex-start;
+}
+
 
 @media only screen and (max-width: 568px) {
     .header > .header-links {
