@@ -1,0 +1,169 @@
+.admin-create-product {
+    margin-top: 3rem;
+    padding: 0 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    color: var(--color-text-primary);
+}
+
+.admin-create-product .content {
+    width: 100%;
+    max-width: 44rem;
+    background-color: var(--color-bg-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.admin-create-product .name {
+    font-size: var(--fs-4xl);
+    margin: 0;
+}
+
+.admin-create-product .subtitle {
+    margin: 0.5rem 0 1.5rem;
+    color: var(--color-text-muted);
+}
+
+.admin-create-product .product-form {
+    width: 100%;
+}
+
+.admin-create-product .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.admin-create-product .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.admin-create-product .field > span,
+.admin-create-product .field legend {
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+}
+
+.admin-create-product .field input,
+.admin-create-product .field select,
+.admin-create-product .field textarea {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-size: var(--fs-base);
+    padding: 0.7rem 0.8rem;
+    outline: none;
+}
+
+.admin-create-product .field input:focus,
+.admin-create-product .field select:focus,
+.admin-create-product .field textarea:focus {
+    border-color: var(--color-btn-primary-hover);
+    box-shadow: 0 0 0 3px var(--color-btn-primary-focus);
+}
+
+.admin-create-product .field textarea {
+    resize: vertical;
+    min-height: 7rem;
+}
+
+.admin-create-product .full-width {
+    grid-column: 1 / -1;
+}
+
+.admin-create-product .status-group {
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 1rem;
+}
+
+.admin-create-product .status-group legend {
+    margin-bottom: 0.35rem;
+}
+
+.admin-create-product .status-group label {
+    display: inline-flex;
+    gap: 0.45rem;
+    color: var(--color-text-primary);
+}
+
+.admin-create-product .actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.admin-create-product .actions .cancel,
+.admin-create-product .actions .create {
+    height: 2.5rem;
+    padding: 0 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: var(--fs-base);
+    transition: transform 220ms ease, background-color 220ms ease;
+}
+
+.admin-create-product .actions .cancel {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+}
+
+.admin-create-product .actions .cancel:hover {
+    transform: scale(1.03);
+    background-color: var(--color-bg-hover);
+}
+
+.admin-create-product .actions .create {
+    border: 2px solid var(--color-btn-text);
+    background-color: var(--color-btn-primary);
+    color: var(--color-btn-text);
+}
+
+.admin-create-product .actions .create:hover {
+    transform: scale(1.03);
+    background-color: var(--color-btn-primary-hover);
+}
+
+@media (max-width: 720px) {
+    .admin-create-product {
+        margin-top: 2rem;
+        padding: 0 0.75rem 1.5rem;
+    }
+
+    .admin-create-product .content {
+        padding: 1rem;
+    }
+
+    .admin-create-product .name {
+        font-size: var(--fs-3xl);
+    }
+
+    .admin-create-product .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-create-product .actions {
+        justify-content: stretch;
+    }
+
+    .admin-create-product .actions .cancel,
+    .admin-create-product .actions .create {
+        flex: 1;
+        justify-content: center;
+    }
+}

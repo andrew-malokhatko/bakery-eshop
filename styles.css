@@ -21,6 +21,8 @@
 @import "styles/order-success.css";
 @import "styles/admin-auth.css";
 @import "styles/admin-logout.css";
+@import "styles/admin-create-product.css";
+@import "styles/admin-product-list.css";
 
 
 :root {
