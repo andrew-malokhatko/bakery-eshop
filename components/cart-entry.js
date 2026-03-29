@@ -12,9 +12,9 @@ class CartEntry extends HTMLElement {
                     <img src="${imgSrc}" alt="${title}">
                     <span>${title}</span>
                 </div>
-                <p class="unit-price">€${unitPrice}</p>
+                <p class="unit-price">${unitPrice}€/ks</p>
                 <quantity-input value="${quantity}"></quantity-input>
-                <p class="total">€${totalPrice}</p>
+                <p class="total max-price">${totalPrice}€</p>
                 <button type="button">
                     <img src="resources/cross.svg">
                 </button>

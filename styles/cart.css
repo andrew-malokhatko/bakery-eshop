@@ -91,6 +91,47 @@
     color: var(--color-btn-text);
 }
 
+@media only screen and (max-width: 768px) {
+    .cart {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 1.5rem;
+    }
 
+    .cart .content {
+        grid-column: 1;
+        grid-row: 1;
+    }
 
+    .cart .sidebar {
+        display: flex;
+        flex-direction: column;
+        grid-column: 1;
+        grid-row: 2;
+        width: 100%;
+        gap: 1rem;
+    }
 
+    .cart .sidebar > h2 {
+        width: 100%;
+        margin: 0;
+    }
+
+    .cart .sidebar > hr {
+        display: none;
+    }
+
+    .cart .sidebar .total {
+        margin-top: 0;
+        flex: 0 1 auto;
+        min-width: 9rem;
+    }
+
+    .cart .sidebar > .cart-checkout-btn {
+        margin-top: 0;
+        width: auto;
+        min-height: 2.75rem;
+        min-width: 9rem;
+        padding: 0.65rem 1rem;
+    }
+}

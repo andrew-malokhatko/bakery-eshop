@@ -190,7 +190,7 @@ img {
 @media (max-width: 768px) {
     .product-card .image,
     .products .product-card .image {
-        height: 12rem;
+        height: 16rem;
     }
 
     .review > img {

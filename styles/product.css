@@ -8,7 +8,7 @@
 
 .product > img {
     border-radius: 2rem;
-    width: 100%;
+    width: 50%;
 }
 
 .product .content {
@@ -93,3 +93,20 @@
     line-height: 1.5;
 }
 
+
+@media (max-width: 768px) {
+    .product {
+        flex-direction: column;
+    }
+
+    .product > img {
+        width: 80%;
+        height: 50%;
+    }
+
+    .product-info {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 3rem;
+    }
+}

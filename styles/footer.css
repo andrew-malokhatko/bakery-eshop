@@ -65,7 +65,7 @@
     height: 72px;
 }
 
-/* 
+ 
 @media (max-width: 960px) {
     .footer {
         flex-wrap: wrap;
@@ -76,5 +76,5 @@
         justify-content: center;
         gap: 1rem 2rem;
     }
-} */
+}
 
