@@ -4,14 +4,47 @@
     </x-slot:title>
 
     <div class="auth">
-        <img src="{{asset('images/logo.png')}}" alt="Bakery Logo">
+        <img src="{{ asset('images/logo.png') }}" alt="Bakery Logo">
+
         <div class="content">
             <h1 class="name">Bakery</h1>
             <h2 class="text">Welcome Back!</h2>
-            <p class="has-account">Don't already have an account? <a href="{{ route('register') }}">Sign up</a>.</p>
-            <input type="email" class="email" placeholder="Email">
-            <input type="password" class="password" placeholder="Password">
-            <button class="log-in">Log in</button>
+            <p class="has-account">
+                Don't already have an account?
+                <a href="{{ route('register') }}">Sign up</a>.
+            </p>
+
+            @if ($errors->any())
+            <div class="auth-errors">
+                @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+                @endforeach
+            </div>
+            @endif
+
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <input
+                    type="email"
+                    name="email"
+                    class="email"
+                    placeholder="Email"
+                    value="{{ old('email') }}"
+                    required
+                >
+
+                <input
+                    type="password"
+                    name="password"
+                    class="password"
+                    placeholder="Password"
+                    required
+                >
+
+                <button type="submit" class="log-in">Log in</button>
+            </form>
+
             <a class="lost-password" href="#">Lost your password?</a>
         </div>
     </div>
