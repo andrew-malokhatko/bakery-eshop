@@ -1,0 +1,167 @@
+<x-admin-layout title="Admin product list">
+    <div class="admin-product-list">
+        <div class="list-header">
+            <div>
+                <h1 class="name">Product Catalog</h1>
+                <p class="subtitle">All products currently available in the shop.</p>
+            </div>
+            <a class="add-product" href="{{ route('admin.products.create') }}">+ Add Product</a>
+        </div>
+
+        <section class="list-panel">
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>SKU</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="{{ asset('images/croissant.jpg') }}" alt="Croissant"></td>
+                            <td>
+                                <p class="product-name">Croissant</p>
+                                <p class="product-info">Buttery, flaky pastry baked fresh every morning.</p>
+                            </td>
+                            <td>Pastries</td>
+                            <td>2.20 EUR</td>
+                            <td>34</td>
+                            <td>BK-10001</td>
+                            <td><span class="status active">Active</span></td>
+                            <td class="actions">
+                                <a href="{{ route('admin.products.edit') }}">Edit</a>
+                                <button type="button">Delete</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><img src="{{ asset('images/chocolate-roll.jpg') }}" alt="Chocolate Roll"></td>
+                            <td>
+                                <p class="product-name">Chocolate Roll</p>
+                                <p class="product-info">Soft sweet roll with rich chocolate filling inside.</p>
+                            </td>
+                            <td>Pastries</td>
+                            <td>3.10 EUR</td>
+                            <td>21</td>
+                            <td>BK-10002</td>
+                            <td><span class="status active">Active</span></td>
+                            <td class="actions">
+                                <a href="{{ route('admin.products.edit') }}">Edit</a>
+                                <button type="button">Delete</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><img src="{{ asset('images/baguette.jpg') }}" alt="Baguette"></td>
+                            <td>
+                                <p class="product-name">Baguette</p>
+                                <p class="product-info">Classic crispy baguette with a light airy center.</p>
+                            </td>
+                            <td>Bread</td>
+                            <td>1.90 EUR</td>
+                            <td>42</td>
+                            <td>BK-10003</td>
+                            <td><span class="status active">Active</span></td>
+                            <td class="actions">
+                                <a href="{{ route('admin.products.edit') }}">Edit</a>
+                                <button type="button">Delete</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><img src="{{ asset('images/blueberrie-muffin.jpg') }}" alt="Blueberry Muffin"></td>
+                            <td>
+                                <p class="product-name">Blueberry Muffin</p>
+                                <p class="product-info">Tender muffin filled with juicy blueberries.</p>
+                            </td>
+                            <td>Pastries</td>
+                            <td>2.80 EUR</td>
+                            <td>17</td>
+                            <td>BK-10004</td>
+                            <td><span class="status active">Active</span></td>
+                            <td class="actions">
+                                <a href="{{ route('admin.products.edit') }}">Edit</a>
+                                <button type="button">Delete</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><img src="{{ asset('images/cinnamon-bun.jpg') }}" alt="Cinnamon Bun"></td>
+                            <td>
+                                <p class="product-name">Cinnamon Bun</p>
+                                <p class="product-info">Soft bun swirled with cinnamon and sugar.</p>
+                            </td>
+                            <td>Pastries</td>
+                            <td>2.60 EUR</td>
+                            <td>0</td>
+                            <td>BK-10005</td>
+                            <td><span class="status draft">Out of stock</span></td>
+                            <td class="actions">
+                                <a href="{{ route('admin.products.edit') }}">Edit</a>
+                                <button type="button">Delete</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><img src="{{ asset('images/sourdough-bread.jpg') }}" alt="Sourdough Bread"></td>
+                            <td>
+                                <p class="product-name">Sourdough Bread</p>
+                                <p class="product-info">Rustic sourdough loaf with deep flavor and crust.</p>
+                            </td>
+                            <td>Bread</td>
+                            <td>3.50 EUR</td>
+                            <td>13</td>
+                            <td>BK-10006</td>
+                            <td><span class="status active">Active</span></td>
+                            <td class="actions">
+                                <a href="{{ route('admin.products.edit') }}">Edit</a>
+                                <button type="button">Delete</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><img src="{{ asset('images/apple-pie.jpg') }}" alt="Apple Pie"></td>
+                            <td>
+                                <p class="product-name">Apple Pie</p>
+                                <p class="product-info">Golden pie filled with tender spiced apples.</p>
+                            </td>
+                            <td>Cakes</td>
+                            <td>4.20 EUR</td>
+                            <td>9</td>
+                            <td>BK-10007</td>
+                            <td><span class="status active">Active</span></td>
+                            <td class="actions">
+                                <a href="{{ route('admin.products.edit') }}">Edit</a>
+                                <button type="button">Delete</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><img src="{{ asset('images/donut.jpg') }}" alt="Donut"></td>
+                            <td>
+                                <p class="product-name">Donut</p>
+                                <p class="product-info">Light fluffy donut with a sweet glazed finish.</p>
+                            </td>
+                            <td>Pastries</td>
+                            <td>1.80 EUR</td>
+                            <td>26</td>
+                            <td>BK-10008</td>
+                            <td><span class="status active">Active</span></td>
+                            <td class="actions">
+                                <a href="{{ route('admin.products.edit') }}">Edit</a>
+                                <button type="button">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</x-admin-layout>

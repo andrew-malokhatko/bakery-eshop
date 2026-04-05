@@ -1,0 +1,71 @@
+<x-admin-layout title="Admin create product">
+    <div class="admin-create-product">
+        <div class="content">
+            <h1 class="name">Create Product</h1>
+            <p class="subtitle">Add a new item to your bakery catalog.</p>
+
+            <form class="product-form" action="#" method="post">
+                <div class="form-grid">
+                    <label class="field full-width" for="productName">
+                        <span>Product name</span>
+                        <input id="productName" name="productName" type="text" placeholder="e.g. Strawberry Tart" required>
+                    </label>
+
+                    <label class="field" for="category">
+                        <span>Category</span>
+                        <select id="category" name="category" required>
+                            <option value="" selected disabled>Select category</option>
+                            <option value="cakes">Cakes</option>
+                            <option value="cookies">Cookies</option>
+                            <option value="pastries">Pastries</option>
+                            <option value="bread">Bread</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </label>
+
+                    <label class="field" for="sku">
+                        <span>SKU</span>
+                        <input id="sku" name="sku" type="text" placeholder="e.g. BK-10012" required>
+                    </label>
+
+                    <label class="field" for="price">
+                        <span>Price</span>
+                        <input id="price" name="price" type="number" min="0" step="0.01" placeholder="0.00" required>
+                    </label>
+
+                    <label class="field" for="stock">
+                        <span>Stock</span>
+                        <input id="stock" name="stock" type="number" min="0" step="1" placeholder="0" required>
+                    </label>
+
+                    <label class="field full-width" for="imageUrl">
+                        <span>Image URL</span>
+                        <input id="imageUrl" name="imageUrl" type="url" placeholder="https://example.com/image.jpg">
+                    </label>
+
+                    <label class="field full-width" for="description">
+                        <span>Description</span>
+                        <textarea id="description" name="description" rows="5" placeholder="Write a short product description..."></textarea>
+                    </label>
+
+                    <fieldset class="field full-width status-group">
+                        <legend>Status</legend>
+                        <label for="statusActive">
+                            <input id="statusActive" type="radio" name="status" value="active" checked>
+                            Active
+                        </label>
+                        <label for="statusDraft">
+                            <input id="statusDraft" type="radio" name="status" value="draft">
+                            Draft
+                        </label>
+                    </fieldset>
+                </div>
+
+                <div class="actions">
+                    <a class="cancel" href="{{ route('admin.products.index') }}">Cancel</a>
+                    <button class="create" type="submit">Create Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</x-admin-layout>
