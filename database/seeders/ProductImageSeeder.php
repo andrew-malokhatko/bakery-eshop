@@ -42,8 +42,7 @@ class ProductImageSeeder extends Seeder
             }
         }
 
-        if (! empty($links)) {
-            DB::table('products_images')->insert($links);
-        }
+        
+        DB::table('products_images')->insert($links);
     }
 }

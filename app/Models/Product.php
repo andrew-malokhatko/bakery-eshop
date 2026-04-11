@@ -19,4 +19,14 @@ class Product extends Model
     {
         return $this->belongsToMany(Image::class, 'products_images');
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'products_categories');
+    }
+
+        public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'products_tags');
+    }
 }
