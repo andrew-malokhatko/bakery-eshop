@@ -33,7 +33,7 @@
     /*flex: 10;*/
 }
 
-.cart-entry > quantity-input {
+.cart-entry > .quantity {
     height: 3rem;
 }
 
@@ -55,8 +55,16 @@
 }
 
 .cart-entry button > img {
-    width: 75%;
-    height: 75%;
+    width: 3.5rem;
+    height: 3.5rem;
+    cursor: pointer;
+}
+
+.cart-entry .cart-product > img {
+    width: 5.5rem;
+    height: 5.5rem;
+    object-fit: cover;
+    border-radius: 0.75rem;
 }
 
 @media only screen and (max-width: 768px) {
