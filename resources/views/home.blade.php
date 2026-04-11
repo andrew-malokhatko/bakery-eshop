@@ -12,32 +12,7 @@
         </div>
 	</section>
 
-    <div class="bestsellers">
-        <h2 class="title">Bestsellers</h2>
-        <div class="products">
-            {{-- <x-product-cart href="product" img-src="images/chocolate-cake.jpg"/> --}}
-            <x-product-card
-                    href="{{ route('product') }}"
-                    img-src="images/chocolate-cake.jpg"
-                    title="Chocolate cake"
-                    desc="Rich chocolate sponge with soft cream and berries."
-                    price="24.99" />
-
-            <x-product-card
-                    href="{{ route('product') }}"
-                    img-src="images/vanilla-cupcake.jpg"
-                    title="Vanilla cupcakes"
-                    desc="Light vanilla cupcakes with creamy frosting."
-                    price="12.50" />
-
-            <x-product-card
-                    href="{{ route('product') }}"
-                    img-src="images/cookies-box.jpg"
-                    title="Cookies box"
-                    desc="A mix of handmade cookies for tea or coffee."
-                    price="9.90" />
-		</div>
-	</div>
+    <x-bestsellers title="Bestsellers" :products="$bestsellerProducts" />
 
     <article class="review" id="review">
         <div class="content">

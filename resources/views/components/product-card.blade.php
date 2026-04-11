@@ -1,19 +1,16 @@
 {{-- resources/views/components/product-card.blade.php --}}
 
 @props([
-    'href' => route('product'),
-    'imgSrc' => 'https://placehold.co/400x300/fdf2f8/7e22ce?text=Product',
-    'title' => 'Product',
-    'desc' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna',
-    'price' => '5.50'
+    'href' => '#',
+    'product' => null,
 ])
 
-<a {{ $attributes->merge(['class' => 'product-card']) }} href="{{ $href }}">
-    <img class="image" src="{{ $imgSrc }}" alt="{{ $title }}"/>
-    <p class="title">{{ $title }}</p>
-    <p class="desc">{{ $desc }}</p>
+<a {{ $attributes->merge(['class' => 'product-card']) }} href="{{ route('product.show', ['product' => $product]) }}">
+    <img class="image" src="{{ $product->images()->first()->url }}" alt="{{ $product->name }}"/>
+    <p class="title">{{ $product->name }}</p>
+    <p class="desc">{{ $product->description }}</p>
     <div class="content">
-        <p>{{ $price }}€</p>
+        <p>{{ number_format((float) ($product?->price ?? 0), 2) }}€</p>
         <button type="button">Add to cart</button>
     </div>
 </a>

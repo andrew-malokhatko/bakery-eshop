@@ -2,17 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 
-Route::view('/', 'home')->name('home');
-Route::view('/cart', 'cart')->name('cart');
-//Route::get('/product/{id}', [ProductController::class, 'show'])->name('product');
-Route::view('/product', 'product')->name('product');
-Route::view('/login', 'login')->name('login');
-//Route::view('/shop', 'shop')->name('shop');
+Route::get('/', [ProductController::class, 'home'])->name('home');
 Route::get('/shop', [ProductController::class, 'index'])->name('shop');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/cart/{product}', [CartController::class, 'post'])->name('cart.add');
+Route::delete('/cart/{product}', [CartController::class, 'remove'])->name('cart.remove');
 Route::view('/contact', 'contact')->name('contact');
-Route::view('/register', 'register')->name('register');
 Route::view('/profile', 'profile')->name('profile');
 Route::view('/checkout', 'checkout')->name('checkout');
 Route::view('/checkout/payment', 'checkout-payment')->name('checkout.payment');

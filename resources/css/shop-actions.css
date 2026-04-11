@@ -34,6 +34,136 @@
     color: var(--color-text-primary);
 }
 
+.panel-caption {
+    margin: -0.4rem 0 1rem;
+    font-size: 0.9rem;
+    color: rgba(55, 24, 62, 0.72);
+}
+
+.sort-label {
+    display: inline-block;
+    margin-bottom: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: rgba(55, 24, 62, 0.7);
+}
+
+.sort-select {
+    width: 100%;
+    height: 2.75rem;
+    padding: 0 0.8rem;
+    border-radius: 10px;
+    border: 1px solid #dec1ef;
+    background: #fff9ff;
+    color: var(--color-text-primary);
+    font-size: 0.95rem;
+}
+
+.sort-select:focus {
+    outline: 2px solid rgba(126, 34, 206, 0.2);
+    border-color: #a855f7;
+}
+
+.price-slider-group {
+    margin-bottom: 0.85rem;
+}
+
+.price-values-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    color: rgba(55, 24, 62, 0.82);
+    margin-bottom: 0.55rem;
+}
+
+.dual-range {
+    position: relative;
+    height: 1.8rem;
+}
+
+.dual-range-track,
+.dual-range-fill {
+    position: absolute;
+    top: 50%;
+    height: 0.35rem;
+    transform: translateY(-50%);
+    border-radius: 999px;
+}
+
+.dual-range-track {
+    left: 0;
+    width: 100%;
+    background: #edd7fa;
+}
+
+.dual-range-fill {
+    left: 0;
+    width: 0;
+    background: #8b3fd3;
+}
+
+.price-range-thumb {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1.8rem;
+    margin: 0;
+    pointer-events: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    outline: none;
+}
+
+.price-range-thumb::-webkit-slider-runnable-track {
+    height: 0.35rem;
+    background: transparent;
+    border: 0;
+}
+
+.price-range-thumb::-moz-range-track {
+    height: 0.35rem;
+    background: transparent;
+    border: 0;
+}
+
+.price-range-thumb::-moz-focus-outer {
+    border: 0;
+}
+
+.price-range-thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    margin-top: -0.33rem;
+    border-radius: 50%;
+    border: 2px solid #8b3fd3;
+    background: #ffffff;
+    box-shadow: 0 1px 6px rgba(55, 24, 62, 0.18);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.price-range-thumb::-moz-range-thumb {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid #8b3fd3;
+    background: #ffffff;
+    box-shadow: 0 1px 6px rgba(55, 24, 62, 0.18);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.price-range-thumb:focus {
+    outline: none;
+}
+
 .filter-group + .filter-group {
     margin-top: 1rem;
     padding-top: 1rem;
@@ -67,10 +197,87 @@
     accent-color: #7e22ce;
 }
 
+.tag-filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.tag-pill {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 0.92rem;
+    line-height: 1;
+}
+
+.tag-pill:hover {
+    transform: translateY(-1px);
+}
+
+.tag-pill:hover span {
+    background: #faf0ff;
+}
+
+.tag-pill input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tag-pill span {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid #dec1ef;
+    border-radius: 999px;
+    background: #fff9ff;
+    color: var(--color-btn-text-secondary);
+    font-weight: 600;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+
+
+.tag-pill input:checked + span {
+    background: var(--color-btn-primary);
+    border-color: var(--color-btn-text);
+    color: var(--color-btn-text);
+}
+
+.panel-actions {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.panel-clear-link {
+    flex: 1;
+    margin-top: 1rem;
+    height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid #dec1ef;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 200ms ease;
+}
+
+.panel-clear-link:hover {
+    background: #faf0ff;
+}
+
 .panel-apply-button {
     margin-top: 1rem;
-    width: 100%;
+    width: auto;
+    min-width: 7.25rem;
     height: 2.75rem;
+    padding: 0 1.1rem;
     background-color: transparent;
     border: 1px solid var(--color-btn-text);
     border-radius: 10px;
