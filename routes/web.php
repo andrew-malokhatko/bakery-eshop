@@ -2,12 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 
 Route::view('/', 'home')->name('home');
 Route::view('/cart', 'cart')->name('cart');
+//Route::get('/product/{id}', [ProductController::class, 'show'])->name('product');
 Route::view('/product', 'product')->name('product');
 Route::view('/login', 'login')->name('login');
-Route::view('/shop', 'shop')->name('shop');
+//Route::view('/shop', 'shop')->name('shop');
+Route::get('/shop', [ProductController::class, 'index'])->name('shop');
 Route::view('/contact', 'contact')->name('contact');
 Route::view('/register', 'register')->name('register');
 Route::view('/profile', 'profile')->name('profile');

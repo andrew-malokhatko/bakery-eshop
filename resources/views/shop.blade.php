@@ -6,54 +6,14 @@
                 <button class="search-button" type="submit">Search</button>
             </form>
 
-            <div class="products">
-                <x-product-card
-                        title="Croissant"
-                        price="2.20"
-                        img-src="images/croissant.jpg"
-                        desc="Buttery, flaky pastry baked fresh every morning." />
-
-                <x-product-card
-                        title="Chocolate Roll"
-                        price="3.10"
-                        img-src="images/chocolate-roll.jpg"
-                        desc="Soft sweet roll with rich chocolate filling inside." />
-
-                <x-product-card
-                        title="Baguette"
-                        price="1.90"
-                        img-src="images/baguette.jpg"
-                        desc="Classic crispy baguette with a light airy center." />
-
-                <x-product-card
-                        title="Blueberry Muffin"
-                        price="2.80"
-                        img-src="images/blueberrie-muffin.jpg"
-                        desc="Tender muffin filled with juicy blueberries." />
-
-                <x-product-card
-                        title="Cinnamon Bun"
-                        price="2.60"
-                        img-src="images/cinnamon-bun.jpg"
-                        desc="Soft bun swirled with cinnamon and sugar." />
-
-                <x-product-card
-                        title="Sourdough Bread"
-                        price="3.50"
-                        img-src="images/sourdough-bread.jpg"
-                        desc="Rustic sourdough loaf with deep flavor and crust." />
-
-                <x-product-card
-                        title="Apple Pie"
-                        price="4.20"
-                        img-src="images/apple-pie.jpg"
-                        desc="Golden pie filled with tender spiced apples." />
-
-                <x-product-card
-                        title="Donut"
-                        price="1.80"
-                        img-src="images/donut.jpg"
-                        desc="Light fluffy donut with a sweet glazed finish." />
+             <div class="products">
+                @foreach ($products as $product)
+                    <x-product-card
+                        :title="$product->name"
+                        :price="$product->price"
+                        :img-src="$product->images->first()->url"
+                        :desc="$product->description" />
+                @endforeach
             </div>
         </div>
 
