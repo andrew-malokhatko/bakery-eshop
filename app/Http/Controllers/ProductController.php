@@ -80,8 +80,9 @@ class ProductController extends Controller
                     fn($q) => $q->orderBy('price')
                 );
             })
-            ->take(9)
-            ->get();
+            //->take(9)
+            ->paginate(9);
+            //->get();
 
         return view('shop', [
             'products' => $products,

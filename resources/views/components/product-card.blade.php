@@ -9,8 +9,10 @@
     <img class="image" src="{{ $product->images()->first()->url }}" alt="{{ $product->name }}"/>
     <p class="title">{{ $product->name }}</p>
     <p class="desc">{{ $product->description }}</p>
-    <div class="content">
+    <form class="content" method="POST" action="{{ route('cart.add', ['product' => $product]) }}">
+        @csrf
         <p>{{ number_format((float) ($product?->price ?? 0), 2) }}€</p>
-        <button type="button">Add to cart</button>
-    </div>
+        <input type="hidden" name="quantity" value="1">
+        <button type="submit">Add to cart</button>
+    </form>
 </a>

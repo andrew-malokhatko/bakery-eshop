@@ -22,6 +22,10 @@
                     <x-product-card :product="$product" />
                 @endforeach
             </div>
+
+            <div class="mt-8">
+                {{ $products->links() }}
+            </div>
         </div>
 
         <aside class="shop-sidebar">
@@ -99,7 +103,6 @@
                 </div>
                 <button type="submit" class="panel-apply-button">Apply</button>
             </div>
-
         </aside>
     </form>
 

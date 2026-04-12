@@ -57,3 +57,11 @@
     z-index: 10;
     transition: transform 120ms ease, background-color 220ms ease;
 }
+
+.product-card .content button:hover {
+    background-color: var(--color-btn-primary-hover);
+    transform: scale(1.02);
+    border-color: var(--color-btn-text);
+    color: var(--color-btn-text);
+    z-index: 10;
+}
