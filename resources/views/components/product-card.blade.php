@@ -9,7 +9,7 @@
     <img class="image" src="{{ $product->images()->first()->url }}" alt="{{ $product->name }}"/>
     <p class="title">{{ $product->name }}</p>
     <p class="desc">{{ $product->description }}</p>
-    <form class="content" method="POST" action="{{ route('cart.add', ['product' => $product]) }}">
+    <form class="product-card-content" method="POST" action="{{ route('cart.add', ['product' => $product]) }}">
         @csrf
         <p>{{ number_format((float) ($product?->price ?? 0), 2) }}€</p>
         <input type="hidden" name="quantity" value="1">

@@ -10,12 +10,24 @@
         $orderBy = $orderBy ?? '';
     @endphp
 
-    <form class="shop-page" method="GET" action="{{ route('shop') }}">
+    <div class="shop-page">
         <div class="shop-main">
-            <div class="search-bar" id="product-search">
+            <form class="search-bar" id="product-search" method="GET" action="{{ route('shop') }}">
                 <input type="text" id="search-input" placeholder="Search product..." name="search" value="{{ $search }}" />
+                {{-- Apply categories filters  --}}
+                @foreach ($selectedCategories as $category)
+                    <input type="hidden" name="categories[]" value="{{ $category }}" />
+                @endforeach
+                {{-- Apply tags filters  --}}
+                @foreach ($selectedTags as $tag)
+                    <input type="hidden" name="tags[]" value="{{ $tag }}" />
+                @endforeach
+                {{-- Apply price filters  --}}
+                <input type="hidden" name="min_price" value="{{ $minPrice }}" />
+                <input type="hidden" name="max_price" value="{{ $maxPrice }}" />
+                <input type="hidden" name="order_by" value="{{ $orderBy }}" />
                 <button class="search-button" type="submit">Search</button>
-            </div>
+            </form>
 
              <div class="products">
                 @foreach ($products as $product)
@@ -29,7 +41,10 @@
         </div>
 
         <aside class="shop-sidebar">
-            <div class="sorting-panel">
+            <form method="GET" action="{{ route('shop') }}">
+            {{-- Apply search filters  --}}
+            <input type="hidden" name="search" value="{{ $search }}" />
+            <div class="sorting-panel"> 
                 <h3>Price & Order</h3>
                 <p class="panel-caption">Set a price range and sorting direction.</p>
                 <div class="price-slider-group">
@@ -103,8 +118,9 @@
                 </div>
                 <button type="submit" class="panel-apply-button">Apply</button>
             </div>
+            </form>
         </aside>
-    </form>
+    </div>
 
     <script>
         (() => {

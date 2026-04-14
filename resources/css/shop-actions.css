@@ -291,7 +291,7 @@
     background-color: var(--color-btn-primary-hover);
     transform: scale(1.03);
 }
-
+ 
 @media only screen and (max-width: 768px) {
     .shop-page {
         display: grid;
