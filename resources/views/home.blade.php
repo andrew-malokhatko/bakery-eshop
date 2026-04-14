@@ -28,10 +28,13 @@
     <div class="categories">
         <h2 class="title">Categories</h2>
         <div class="content">
-            <x-category-card name="Bread" imgSrc="https://placehold.co/600x400/fdf2f8/7e22ce?text=Bread" />
-            <x-category-card name="Cakes" imgSrc="https://placehold.co/600x400/fdf2f8/7e22ce?text=Cakes" />
-            <x-category-card name="Pastries" imgSrc="https://placehold.co/600x400/fdf2f8/7e22ce?text=Pastries" />
-            <x-category-card name="Cookies" imgSrc="https://placehold.co/600x400/fdf2f8/7e22ce?text=Cookies" />
+            @foreach ($categories as $category)
+                <x-category-card
+                    href="{{ route('shop', ['categories' => [$category->name]]) }}"
+                    name="{{ $category->name }}"
+                    imgSrc="{{ 'https://placehold.co/600x400/fdf2f8/7e22ce?text=' . rawurlencode($category->name) }}"
+                />
+            @endforeach
         </div>
     </div>
 </x-layout>
