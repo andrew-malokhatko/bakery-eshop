@@ -19,6 +19,7 @@
                             <th>Price</th>
                             <th>Stock</th>
                             <th>SKU</th>
+                            <th>Tags</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -41,6 +42,11 @@
                         <td>{{ number_format($product->price, 2) }} EUR</td>
                         <td>{{ $product->quantity }}</td>
                         <td>#{{ $product->id }}</td>
+                        <td>
+                            @foreach($product->tags as $tag)
+                            <span>{{ $tag->name }}</span>
+                            @endforeach
+                        </td>
 
                         <td>
                             @if($product->is_active)

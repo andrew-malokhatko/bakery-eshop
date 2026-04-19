@@ -7,6 +7,7 @@ use App\Models\Tag;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Image;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -115,9 +116,11 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::orderBy('name')->get();
+        $tags = Tag::orderBy('name')->get();
 
         return view('admin.create-product', [
             'categories' => $categories,
+            'tags' => $tags,
         ]);
     }
 
@@ -133,8 +136,10 @@ class ProductController extends Controller
             'quantity' => 'required|integer|min:0',
             'is_active' => 'required|boolean',
             'category_id' => 'required|exists:categories,id',
-            'image_url_1' => 'required|url',
-            'image_url_2' => 'required|url',
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:tags,id',
+            'images' => 'required|array|min:2',
+            'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         $product = Product::create([
@@ -147,17 +152,20 @@ class ProductController extends Controller
 
         $product->categories()->attach($validated['category_id']);
 
-        $image1 = Image::create([
-            'url' => $validated['image_url_1'],
-            'alt_text' => $validated['name'],
-        ]);
+        if (!empty($validated['tags'])) {
+            $product->tags()->attach($validated['tags']);
+        }
 
-        $image2 = Image::create([
-            'url' => $validated['image_url_2'],
-            'alt_text' => $validated['name'],
-        ]);
+        foreach ($request->file('images') as $uploadedImage) {
+            $path = $uploadedImage->store('products', 'public');
 
-        $product->images()->attach([$image1->id, $image2->id]);
+            $image = Image::create([
+                'url' => '/storage/' . $path,
+                'alt_text' => $product->name,
+            ]);
+
+            $product->images()->attach($image->id);
+        }
 
         return redirect()
             ->route('admin.products.index')
@@ -192,12 +200,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $product->load(['images', 'categories']);
+        $product->load(['images', 'categories', 'tags']);
         $categories = Category::orderBy('name')->get();
+        $tags = Tag::orderBy('name')->get();
 
         return view('admin.edit-product', [
             'product' => $product,
             'categories' => $categories,
+            'tags' => $tags,
         ]);
     }
 
@@ -213,8 +223,10 @@ class ProductController extends Controller
             'quantity' => 'required|integer|min:0',
             'is_active' => 'required|boolean',
             'category_id' => 'required|exists:categories,id',
-            'image_url_1' => 'required|url',
-            'image_url_2' => 'required|url',
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:tags,id',
+            'images' => 'nullable|array|min:2',
+            'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
         $product->update([
@@ -226,26 +238,32 @@ class ProductController extends Controller
         ]);
 
         $product->categories()->sync([$validated['category_id']]);
+        $product->tags()->sync($validated['tags'] ?? []);
 
-        $oldImageIds = $product->images->pluck('id')->all();
+        if ($request->hasFile('images')) {
+            $oldImages = $product->images;
 
-        $product->images()->detach();
+            $product->images()->detach();
 
-        if (!empty($oldImageIds)) {
-            Image::whereIn('id', $oldImageIds)->delete();
+            foreach ($oldImages as $oldImage) {
+                if ($oldImage->url && str_starts_with($oldImage->url, '/storage/')) {
+                    Storage::disk('public')->delete(str_replace('/storage/', '', $oldImage->url));
+                }
+
+                $oldImage->delete();
+            }
+
+            foreach ($request->file('images') as $uploadedImage) {
+                $path = $uploadedImage->store('products', 'public');
+
+                $image = Image::create([
+                    'url' => '/storage/' . $path,
+                    'alt_text' => $product->name,
+                ]);
+
+                $product->images()->attach($image->id);
+            }
         }
-
-        $image1 = Image::create([
-            'url' => $validated['image_url_1'],
-            'alt_text' => $validated['name'],
-        ]);
-
-        $image2 = Image::create([
-            'url' => $validated['image_url_2'],
-            'alt_text' => $validated['name'],
-        ]);
-
-        $product->images()->attach([$image1->id, $image2->id]);
 
         return redirect()
             ->route('admin.products.index')

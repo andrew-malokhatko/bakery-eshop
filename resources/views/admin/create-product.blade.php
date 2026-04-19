@@ -4,7 +4,18 @@
             <h1 class="name">Create Product</h1>
             <p class="subtitle">Add a new item to your bakery catalog.</p>
 
-            <form class="product-form" action="{{ route('admin.products.store') }}" method="POST">
+            @if ($errors->any())
+            <div style="margin-bottom: 20px; padding: 12px 16px; border: 1px solid #f5c2c7; background: #f8d7da; color: #842029; border-radius: 8px;">
+                <strong>Form errors:</strong>
+                <ul style="margin: 8px 0 0 18px;">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            <form class="product-form" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-grid">
@@ -35,15 +46,29 @@
                         <input id="quantity" name="quantity" type="number" min="0" step="1" value="{{ old('quantity') }}" required>
                     </label>
 
-                    <label class="field full-width" for="image_url_1">
-                        <span>Image URL 1</span>
-                        <input id="image_url_1" name="image_url_1" type="url" value="{{ old('image_url_1') }}" required>
+                    <label class="field full-width" for="images">
+                        <span>Product images</span>
+                        <input id="images" name="images[]" type="file" multiple accept="image/*" required>
+                        <small>Choose at least 2 images</small>
                     </label>
 
-                    <label class="field full-width" for="image_url_2">
-                        <span>Image URL 2</span>
-                        <input id="image_url_2" name="image_url_2" type="url" value="{{ old('image_url_2') }}" required>
-                    </label>
+                    <div class="field full-width">
+                        <span>Tags</span>
+
+                        <div class="tags-wrap">
+                            @foreach($tags as $tag)
+                            <label class="tag-pill">
+                                <input
+                                    type="checkbox"
+                                    name="tags[]"
+                                    value="{{ $tag->id }}"
+                                    {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}
+                                >
+                                <span>{{ $tag->name }}</span>
+                            </label>
+                            @endforeach
+                        </div>
+                    </div>
 
                     <label class="field full-width" for="description">
                         <span>Description</span>

@@ -4,7 +4,18 @@
             <h1 class="name">Edit Product</h1>
             <p class="subtitle">Update product details and save your changes.</p>
 
-            <form class="product-form" action="{{ route('admin.products.update', $product) }}" method="POST">
+            @if ($errors->any())
+            <div style="margin-bottom: 20px; padding: 12px 16px; border: 1px solid #f5c2c7; background: #f8d7da; color: #842029; border-radius: 8px;">
+                <strong>Form errors:</strong>
+                <ul style="margin: 8px 0 0 18px;">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            <form class="product-form" action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -36,15 +47,40 @@
                         <input id="quantity" name="quantity" type="number" min="0" step="1" value="{{ old('quantity', $product->quantity) }}" required>
                     </label>
 
-                    <label class="field full-width" for="image_url_1">
-                        <span>Image URL 1</span>
-                        <input id="image_url_1" name="image_url_1" type="url" value="{{ old('image_url_1', $product->images[0]->url ?? '') }}" required>
+                    @if($product->images->isNotEmpty())
+                    <div class="field full-width">
+                        <span>Current images</span>
+                        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+                            @foreach($product->images as $image)
+                            <img src="{{ $image->url }}" alt="{{ $image->alt_text }}" style="width:120px; height:120px; object-fit:cover; border-radius:10px;">
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+
+                    <label class="field full-width" for="images">
+                        <span>Replace product images</span>
+                        <input id="images" name="images[]" type="file" multiple accept="image/*">
+                        <small>Upload 2 or more new images if you want to replace the old ones</small>
                     </label>
 
-                    <label class="field full-width" for="image_url_2">
-                        <span>Image URL 2</span>
-                        <input id="image_url_2" name="image_url_2" type="url" value="{{ old('image_url_2', $product->images[1]->url ?? '') }}" required>
-                    </label>
+                    <div class="field full-width">
+                        <span>Tags</span>
+
+                        <div class="tags-wrap">
+                            @foreach($tags as $tag)
+                            <label class="tag-pill">
+                                <input
+                                    type="checkbox"
+                                    name="tags[]"
+                                    value="{{ $tag->id }}"
+                                    {{ in_array($tag->id, old('tags', $product->tags->pluck('id')->toArray())) ? 'checked' : '' }}
+                                >
+                                <span>{{ $tag->name }}</span>
+                            </label>
+                            @endforeach
+                        </div>
+                    </div>
 
                     <label class="field full-width" for="description">
                         <span>Description</span>

@@ -139,6 +139,37 @@
     background-color: var(--color-btn-primary-hover);
 }
 
+.tags-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.tag-pill {
+    position: relative;
+    cursor: pointer;
+}
+
+.tag-pill input {
+    position: absolute;
+    opacity: 0;
+}
+
+.tag-pill span {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 1px solid #d8b6f3;
+    color: #8b5cc7;
+    transition: 0.2s;
+}
+
+.tag-pill input:checked + span {
+    background: #8b5cc7;
+    color: white;
+}
+
 @media (max-width: 720px) {
     .admin-create-product {
         margin-top: 2rem;
