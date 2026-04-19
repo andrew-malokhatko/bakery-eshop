@@ -18,22 +18,27 @@ Route::view('/checkout/payment', 'checkout-payment')->name('checkout.payment');
 Route::view('/checkout/review', 'checkout-review')->name('checkout.review');
 Route::view('/order-success', 'order-success')->name('order.success');
 
-Route::view('/admin/login', 'admin.login')->name('admin.login');
-Route::view('/admin/logout', 'admin.logout')->name('admin.logout');
-Route::view('/admin/products', 'admin.product-list')->name('admin.products.index');
-Route::view('/admin/products/create', 'admin.create-product')->name('admin.products.create');
-Route::view('/admin/products/edit', 'admin.edit-product')->name('admin.products.edit');
-
-// auth pages for guests only
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
 
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
+
+    Route::get('/admin/login', [AuthController::class, 'showAdminLogin'])->name('admin.login');
+    Route::post('/admin/login', [AuthController::class, 'adminLogin'])->name('admin.login.post');
 });
 
-// logout only for authenticated users
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/admin/logout', [AuthController::class, 'adminLogout'])->name('admin.logout');
+});
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/products', [ProductController::class, 'adminIndex'])->name('admin.products.index');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+    Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
+    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.delete');
 });

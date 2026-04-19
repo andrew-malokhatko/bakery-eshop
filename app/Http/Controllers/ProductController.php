@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Image;
 
 class ProductController extends Controller
 {
@@ -75,7 +76,7 @@ class ProductController extends Controller
             // filter by price range
             ->whereBetween('price', [$minPrice, $maxPrice])
             ->when($orderBy !== '', function ($query) use ($orderBy) {
-                return $query->when($orderBy === 'price_desc', 
+                return $query->when($orderBy === 'price_desc',
                     fn($q) => $q->orderByDesc('price'),
                     fn($q) => $q->orderBy('price')
                 );
@@ -99,20 +100,68 @@ class ProductController extends Controller
         ]);
     }
 
+    public function adminIndex()
+    {
+        $products = Product::with(['images', 'categories'])->orderByDesc('id')->get();
+
+        return view('admin.product-list', [
+            'products' => $products,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        $categories = Category::orderBy('name')->get();
+
+        return view('admin.create-product', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Product $product)
+    public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
+            'is_active' => 'required|boolean',
+            'category_id' => 'required|exists:categories,id',
+            'image_url_1' => 'required|url',
+            'image_url_2' => 'required|url',
+        ]);
 
+        $product = Product::create([
+            'name' => $validated['name'],
+            'description' => $validated['description'] ?? null,
+            'price' => $validated['price'],
+            'quantity' => $validated['quantity'],
+            'is_active' => $validated['is_active'],
+        ]);
+
+        $product->categories()->attach($validated['category_id']);
+
+        $image1 = Image::create([
+            'url' => $validated['image_url_1'],
+            'alt_text' => $validated['name'],
+        ]);
+
+        $image2 = Image::create([
+            'url' => $validated['image_url_2'],
+            'alt_text' => $validated['name'],
+        ]);
+
+        $product->images()->attach([$image1->id, $image2->id]);
+
+        return redirect()
+            ->route('admin.products.index')
+            ->with('success', 'Product created successfully.');
     }
 
     /**
@@ -143,7 +192,13 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $product->load(['images', 'categories']);
+        $categories = Category::orderBy('name')->get();
+
+        return view('admin.edit-product', [
+            'product' => $product,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -151,7 +206,50 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
+            'is_active' => 'required|boolean',
+            'category_id' => 'required|exists:categories,id',
+            'image_url_1' => 'required|url',
+            'image_url_2' => 'required|url',
+        ]);
+
+        $product->update([
+            'name' => $validated['name'],
+            'description' => $validated['description'] ?? null,
+            'price' => $validated['price'],
+            'quantity' => $validated['quantity'],
+            'is_active' => $validated['is_active'],
+        ]);
+
+        $product->categories()->sync([$validated['category_id']]);
+
+        $oldImageIds = $product->images->pluck('id')->all();
+
+        $product->images()->detach();
+
+        if (!empty($oldImageIds)) {
+            Image::whereIn('id', $oldImageIds)->delete();
+        }
+
+        $image1 = Image::create([
+            'url' => $validated['image_url_1'],
+            'alt_text' => $validated['name'],
+        ]);
+
+        $image2 = Image::create([
+            'url' => $validated['image_url_2'],
+            'alt_text' => $validated['name'],
+        ]);
+
+        $product->images()->attach([$image1->id, $image2->id]);
+
+        return redirect()
+            ->route('admin.products.index')
+            ->with('success', 'Product updated successfully.');
     }
 
     /**
@@ -159,6 +257,19 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $imageIds = $product->images->pluck('id')->all();
+
+        $product->images()->detach();
+        $product->categories()->detach();
+        $product->tags()->detach();
+        $product->delete();
+
+        if (!empty($imageIds)) {
+            Image::whereIn('id', $imageIds)->delete();
+        }
+
+        return redirect()
+            ->route('admin.products.index')
+            ->with('success', 'Product deleted successfully.');
     }
 }

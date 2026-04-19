@@ -3,7 +3,10 @@
         <div class="content">
             <h1 class="name">Log out?</h1>
             <p>Are you sure you want to log out?</p>
-            <button class="log-out">Log out</button>
+            <form action="{{ route('admin.logout') }}" method="POST">
+                @csrf
+                <button class="log-out" type="submit">Log out</button>
+            </form>
             <a class="cancel" href="{{ route('admin.products.index') }}">Cancel</a>
         </div>
     </div>
