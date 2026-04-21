@@ -59,12 +59,14 @@
                     required
                 >
 
-                <p class="has-account">
+                <p class="auth-switch-text">
                     Already have an account?
-                    <a href="{{ route('login') }}">Log in</a>.
+                    <a href="{{ route('login') }}" class="auth-switch-link">Log in</a>
                 </p>
 
-                <button type="submit" class="log-in">Sign up</button>
+                <div class="auth-actions">
+                    <button type="submit" class="auth-btn">Sign up</button>
+                </div>
             </form>
         </div>
     </div>

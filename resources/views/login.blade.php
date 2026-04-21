@@ -9,9 +9,9 @@
         <div class="content">
             <h1 class="name">Bakery</h1>
             <h2 class="text">Welcome Back!</h2>
-            <p class="has-account">
+            <p class="auth-switch-text">
                 Don't already have an account?
-                <a href="{{ route('register') }}">Sign up</a>.
+                <a href="{{ route('register') }}" class="auth-switch-link">Sign up</a>
             </p>
 
             @if ($errors->any())
@@ -42,7 +42,9 @@
                     required
                 >
 
-                <button type="submit" class="log-in">Log in</button>
+                <div class="auth-actions">
+                    <button type="submit" class="auth-btn">Log in</button>
+                </div>
             </form>
 
             <a class="lost-password" href="#">Lost your password?</a>
