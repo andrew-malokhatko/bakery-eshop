@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -35,6 +36,8 @@ class AuthController extends Controller
 
         Auth::login($user);
 
+        
+
         $request->session()->regenerate();
 
         return redirect()->route('home');
@@ -47,6 +50,8 @@ class AuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
+        Log::debug('The cart has a token: ' . session('guest_cart_token', 'null'));
+
         if (!Auth::attempt($credentials)) {
             return back()
                 ->withErrors([
@@ -56,6 +61,11 @@ class AuthController extends Controller
         }
 
         $request->session()->regenerate();
+
+        app(CartController::class)->claimSessionCartForUser(Auth::user());
+
+        // see that the cart token has not changed
+        Log::debug('The cart has a token: ' . session('guest_cart_token', 'null'));
 
         return redirect()->route('home');
     }

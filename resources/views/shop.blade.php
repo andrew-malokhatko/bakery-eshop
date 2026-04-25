@@ -36,7 +36,14 @@
             </div>
 
             <div class="mt-8">
-                {{ $products->links() }}
+                {{ $products->appends([
+                    'search' => $search,
+                    'categories' => $selectedCategories,
+                    'tags' => $selectedTags,
+                    'min_price' => $minPrice,
+                    'max_price' => $maxPrice,
+                    'order_by' => $orderBy
+                ])->links() }}
             </div>
         </div>
 
@@ -93,7 +100,7 @@
                 </div>
             </div>
 
-            <div class="filters-panel">
+            <div class="filters-panel mt-2">
                 <h3>Categories</h3>
                 <div class="filter-group">
                     @foreach ($categories as $category)
@@ -106,7 +113,7 @@
                 <button type="submit" class="panel-apply-button">Apply</button>
             </div>
 
-            <div class="filters-panel">
+            <div class="filters-panel mt-2">
                 <h3>Tags</h3>
                 <div class="tag-filter-group">
                     @foreach ($tags as $tag)

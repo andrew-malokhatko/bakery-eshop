@@ -42,8 +42,27 @@ class ProductController extends Controller
         $searchTerm = $validated['search'] ?? '';
         $orderBy = $validated['order_by'] ?? '';
 
-        $absoluteMinPrice = (float) (Product::query()->where('is_active', true)->min('price') ?? 0);
-        $absoluteMaxPrice = (float) (Product::query()->where('is_active', true)->max('price') ?? 0);
+        // Build the base query with all filters for calculating absolute min/max
+        $baseQuery = Product::query()
+            ->where('is_active', true)
+            ->when($selectedCategories !== [], function ($query) use ($selectedCategories): void {
+                $query->whereHas('categories', function ($categoryQuery) use ($selectedCategories): void {
+                    $categoryQuery->whereIn('name', $selectedCategories);
+                });
+            })
+            ->when($selectedTags !== [], function ($query) use ($selectedTags): void {
+                $query->whereHas('tags', function ($tagQuery) use ($selectedTags): void {
+                    $tagQuery->whereIn('name', $selectedTags);
+                });
+            })
+            ->when($searchTerm !== '', function ($query) use ($searchTerm): void {
+                $query->whereRaw('LOWER(name) LIKE ?', ['%' . mb_strtolower($searchTerm) . '%']);
+            });
+
+        // Calculate min/max price from filtered products
+        $absoluteMinPrice = (float) ($baseQuery->clone()->min('price') ?? 0);
+        $absoluteMaxPrice = (float) ($baseQuery->clone()->max('price') ?? 0);
+        
         $minPrice = array_key_exists('min_price', $validated) ? (float) $validated['min_price'] : $absoluteMinPrice;
         $maxPrice = array_key_exists('max_price', $validated) ? (float) $validated['max_price'] : $absoluteMaxPrice;
 
@@ -54,26 +73,9 @@ class ProductController extends Controller
         $categories = Category::query()->orderBy('name')->get();
         $tags = Tag::query()->orderBy('name')->get();
 
-        $products = Product::query()
-            ->where('is_active', true)
+        $products = $baseQuery
             ->with('images')
             ->with('categories')
-            // filter by categories
-            ->when($selectedCategories !== [], function ($query) use ($selectedCategories): void {
-                $query->whereHas('categories', function ($categoryQuery) use ($selectedCategories): void {
-                    $categoryQuery->whereIn('name', $selectedCategories);
-                });
-            })
-            // filter by tags
-            ->when($selectedTags !== [], function ($query) use ($selectedTags): void {
-                $query->whereHas('tags', function ($tagQuery) use ($selectedTags): void {
-                    $tagQuery->whereIn('name', $selectedTags);
-                });
-            })
-            // filter by search
-            ->when($searchTerm !== '', function ($query) use ($searchTerm): void {
-                $query->whereRaw('LOWER(name) LIKE ?', ['%' . mb_strtolower($searchTerm) . '%']);
-            })
             // filter by price range
             ->whereBetween('price', [$minPrice, $maxPrice])
             ->when($orderBy !== '', function ($query) use ($orderBy) {
@@ -82,9 +84,7 @@ class ProductController extends Controller
                     fn($q) => $q->orderBy('price')
                 );
             })
-            //->take(9)
             ->paginate(9);
-            //->get();
 
         return view('shop', [
             'products' => $products,
