@@ -22,7 +22,7 @@
             </div>
             @endif
 
-            <form method="POST" action="{{ route('login') }}">
+            <form class="flex flex-col mt-4" method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <input

@@ -101,6 +101,7 @@
 	width: 100%;
 	max-width: var(--w-xl);
 	margin: 0 auto;
+    padding: 5px 10px 5px 10px;
 }
 
 .products {

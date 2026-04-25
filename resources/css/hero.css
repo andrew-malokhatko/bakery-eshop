@@ -22,7 +22,7 @@
 
 .hero .title {
     text-align: center;
-    font-size: var(--fs-7xl);
+    font-size: var(--fs-4xl);
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
@@ -80,6 +80,10 @@
     .hero {
         margin-top: 4rem;
         padding: 0;
+    }
+
+    .hero .title {
+        font-size: var(--fs-7xl);
     }
 
     .hero img {

@@ -6,6 +6,16 @@
     gap: 5%;
     margin-top: 1.25rem;
     flex-wrap: wrap;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background-color: var(--color-bg-muted);
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.cart-entry:hover {
+    border-color: color-mix(in srgb, var(--color-btn-text) 25%, var(--color-border));
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 .cart-entry .unit-price,
@@ -37,7 +47,7 @@
     height: 3rem;
 }
 
-.cart-entry > button {
+.cart-entry .remove-btn {
     background-color: var(--color-btn-primary);
     border: none;
     width: 3rem;
@@ -50,14 +60,18 @@
     border-radius: 0.75rem;
 }
 
-.cart-entry > button:hover {
+.cart-entry .remove-btn:hover {
     background-color: var(--color-btn-primary-hover);
 }
 
-.cart-entry button > img {
+.cart-entry .remove-btn > img {
     width: 3.5rem;
     height: 3.5rem;
     cursor: pointer;
+}
+
+.cart-entry .remove-form {
+    display: inline-flex;
 }
 
 .cart-entry .cart-product > img {
@@ -69,6 +83,76 @@
 
 @media only screen and (max-width: 768px) {
     .cart-entry {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "product product"
+            "unit total"
+            "quantity remove";
         gap: 0.75rem;
+        align-items: center;
+        padding: 0.75rem;
+    }
+
+    .cart-entry .cart-product {
+        grid-area: product;
+        min-width: 0;
+    }
+
+    .cart-entry .cart-product > span {
+        font-size: var(--fs-lg);
+        overflow-wrap: anywhere;
+    }
+
+    .cart-entry .unit-price {
+        grid-area: unit;
+        justify-self: start;
+    }
+
+    .cart-entry .max-price {
+        grid-area: total;
+        justify-self: end;
+    }
+
+    .cart-entry .unit-price,
+    .cart-entry .max-price {
+        font-size: var(--fs-sm);
+        padding: 0.45rem 0.65rem;
+    }
+
+    .cart-entry > .quantity {
+        grid-area: quantity;
+        height: 2.75rem;
+        justify-self: start;
+    }
+
+    .cart-entry .remove-form {
+        grid-area: remove;
+        justify-self: end;
+    }
+
+    .cart-entry .remove-btn {
+        width: 2.75rem;
+        height: 2.75rem;
+    }
+
+    .cart-entry .remove-btn > img {
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .cart-entry .cart-product {
+        gap: 0.75rem;
+    }
+
+    .cart-entry .cart-product > img {
+        width: 4.25rem;
+        height: 4.25rem;
+    }
+
+    .cart-entry .cart-product > span {
+        font-size: var(--fs-base);
     }
 }
