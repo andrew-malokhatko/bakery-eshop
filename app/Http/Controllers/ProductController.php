@@ -32,7 +32,7 @@ class ProductController extends Controller
             'search' => 'nullable|string|max:255',
             'min_price' => 'nullable|numeric|min:0',
             'max_price' => 'nullable|numeric|min:0',
-            'order_by' => 'nullable|in:price_asc,price_desc,',
+            'order_by' => 'nullable|in:price_asc,price_desc',
             'tags' => 'nullable|array',
             'tags.*' => 'string|distinct|exists:tags,name',
         ]);
@@ -40,49 +40,68 @@ class ProductController extends Controller
         $selectedCategories = $validated['categories'] ?? [];
         $selectedTags = $validated['tags'] ?? [];
         $searchTerm = $validated['search'] ?? '';
-        $orderBy = $validated['order_by'] ?? '';
+        $orderBy = $validated['order_by'] ?? 'price_asc';
 
-        // Build the base query with all filters for calculating absolute min/max
-        $baseQuery = Product::query()
-            ->where('is_active', true)
-            ->when($selectedCategories !== [], function ($query) use ($selectedCategories): void {
-                $query->whereHas('categories', function ($categoryQuery) use ($selectedCategories): void {
-                    $categoryQuery->whereIn('name', $selectedCategories);
-                });
-            })
-            ->when($selectedTags !== [], function ($query) use ($selectedTags): void {
-                $query->whereHas('tags', function ($tagQuery) use ($selectedTags): void {
-                    $tagQuery->whereIn('name', $selectedTags);
-                });
-            })
-            ->when($searchTerm !== '', function ($query) use ($searchTerm): void {
-                $query->whereRaw('LOWER(name) LIKE ?', ['%' . mb_strtolower($searchTerm) . '%']);
-            });
+        // IMPORTANT: price slider limits should NOT depend on selected filters
+        $absoluteMinPrice = (float) (Product::where('is_active', true)->min('price') ?? 0);
+        $absoluteMaxPrice = (float) (Product::where('is_active', true)->max('price') ?? 0);
 
-        // Calculate min/max price from filtered products
-        $absoluteMinPrice = (float) ($baseQuery->clone()->min('price') ?? 0);
-        $absoluteMaxPrice = (float) ($baseQuery->clone()->max('price') ?? 0);
-        
-        $minPrice = array_key_exists('min_price', $validated) ? (float) $validated['min_price'] : $absoluteMinPrice;
-        $maxPrice = array_key_exists('max_price', $validated) ? (float) $validated['max_price'] : $absoluteMaxPrice;
+        if ($absoluteMinPrice === $absoluteMaxPrice) {
+            $absoluteMaxPrice = $absoluteMinPrice + 1;
+        }
+
+        $minPrice = array_key_exists('min_price', $validated)
+            ? (float) $validated['min_price']
+            : $absoluteMinPrice;
+
+        $maxPrice = array_key_exists('max_price', $validated)
+            ? (float) $validated['max_price']
+            : $absoluteMaxPrice;
 
         if ($minPrice > $maxPrice) {
             [$minPrice, $maxPrice] = [$maxPrice, $minPrice];
         }
 
-        $categories = Category::query()->orderBy('name')->get();
-        $tags = Tag::query()->orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
 
-        $products = $baseQuery
-            ->with('images')
-            ->with('categories')
-            // filter by price range
+        $occasionTags = Tag::whereIn('name', [
+            'birthday',
+            'wedding',
+            'gift-box',
+            'party',
+            'breakfast',
+        ])->orderBy('name')->get();
+
+        $textureTags = Tag::whereIn('name', [
+            'fresh-baked',
+            'flaky',
+            'creamy',
+            'crunchy',
+            'artisan',
+        ])->orderBy('name')->get();
+
+        $products = Product::query()
+            ->where('is_active', true)
+            ->with(['images', 'categories', 'tags'])
+            ->when($selectedCategories !== [], function ($query) use ($selectedCategories) {
+                $query->whereHas('categories', function ($categoryQuery) use ($selectedCategories) {
+                    $categoryQuery->whereIn('name', $selectedCategories);
+                });
+            })
+            ->when($selectedTags !== [], function ($query) use ($selectedTags) {
+                $query->whereHas('tags', function ($tagQuery) use ($selectedTags) {
+                    $tagQuery->whereIn('name', $selectedTags);
+                });
+            })
+            ->when($searchTerm !== '', function ($query) use ($searchTerm) {
+                $query->whereRaw('LOWER(name) LIKE ?', ['%' . mb_strtolower($searchTerm) . '%']);
+            })
             ->whereBetween('price', [$minPrice, $maxPrice])
-            ->when($orderBy !== '', function ($query) use ($orderBy) {
-                return $query->when($orderBy === 'price_desc',
-                    fn($q) => $q->orderByDesc('price'),
-                    fn($q) => $q->orderBy('price')
-                );
+            ->when($orderBy === 'price_desc', function ($query) {
+                $query->orderByDesc('price');
+            })
+            ->when($orderBy === 'price_asc', function ($query) {
+                $query->orderBy('price');
             })
             ->paginate(9);
 
@@ -90,7 +109,8 @@ class ProductController extends Controller
             'products' => $products,
             'search' => $searchTerm,
             'categories' => $categories,
-            'tags' => $tags,
+            'occasionTags' => $occasionTags,
+            'textureTags' => $textureTags,
             'selectedCategories' => $selectedCategories,
             'selectedTags' => $selectedTags,
             'minPrice' => $minPrice,

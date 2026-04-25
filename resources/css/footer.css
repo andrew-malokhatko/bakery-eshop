@@ -22,7 +22,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 3rem;
-    align-items: center; 
+    align-items: center;
 }
 
 .footer .links > a {
@@ -65,7 +65,7 @@
     height: 72px;
 }
 
- 
+
 @media (max-width: 960px) {
     .footer {
         flex-wrap: wrap;
