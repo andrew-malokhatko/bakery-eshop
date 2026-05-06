@@ -13,19 +13,19 @@ class ProductTagSeeder extends Seeder
     public function run(): void
     {
         $productTagMap = [
-            ['name' => 'Baguette', 'tags' => ['fresh-baked', 'artisan']],
-            ['name' => 'Country Bread Loaf', 'tags' => ['fresh-baked', 'artisan']],
-            ['name' => 'Sourdough Bread', 'tags' => ['fresh-baked', 'artisan']],
-            ['name' => 'Apple Pie', 'tags' => ['sweet', 'flaky']],
-            ['name' => 'Blueberry Muffin', 'tags' => ['sweet', 'fresh-baked']],
-            ['name' => 'Chocolate Cake', 'tags' => ['sweet', 'chocolate']],
-            ['name' => 'Chocolate Roll', 'tags' => ['flaky', 'chocolate']],
-            ['name' => 'Cinnamon Bun', 'tags' => ['sweet', 'fresh-baked']],
-            ['name' => 'Cookies Box', 'tags' => ['sweet', 'gift-box']],
-            ['name' => 'Croissant', 'tags' => ['fresh-baked', 'flaky']],
-            ['name' => 'Donut', 'tags' => ['sweet']],
-            ['name' => 'Strawberry Tart', 'tags' => ['sweet', 'flaky']],
-            ['name' => 'Vanilla Cupcake', 'tags' => ['sweet', 'gift-box']],
+            ['name' => 'Baguette', 'tags' => ['fresh-baked', 'artisan', 'breakfast']],
+            ['name' => 'Country Bread Loaf', 'tags' => ['fresh-baked', 'artisan', 'breakfast']],
+            ['name' => 'Sourdough Bread', 'tags' => ['artisan', 'crunchy']],
+            ['name' => 'Apple Pie', 'tags' => ['flaky', 'party']],
+            ['name' => 'Blueberry Muffin', 'tags' => ['fresh-baked', 'breakfast']],
+            ['name' => 'Chocolate Cake', 'tags' => ['creamy', 'birthday']],
+            ['name' => 'Chocolate Roll', 'tags' => ['flaky', 'party']],
+            ['name' => 'Cinnamon Bun', 'tags' => ['fresh-baked', 'breakfast']],
+            ['name' => 'Cookies Box', 'tags' => ['crunchy', 'gift-box']],
+            ['name' => 'Croissant', 'tags' => ['fresh-baked', 'flaky', 'breakfast']],
+            ['name' => 'Donut', 'tags' => ['creamy', 'party']],
+            ['name' => 'Strawberry Tart', 'tags' => ['creamy', 'wedding']],
+            ['name' => 'Vanilla Cupcake', 'tags' => ['creamy', 'birthday', 'gift-box']],
         ];
 
         $links = [];

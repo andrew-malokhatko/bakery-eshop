@@ -7,6 +7,7 @@ use App\Models\Tag;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Image;
+use App\TagType;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -63,22 +64,8 @@ class ProductController extends Controller
         }
 
         $categories = Category::orderBy('name')->get();
-
-        $occasionTags = Tag::whereIn('name', [
-            'birthday',
-            'wedding',
-            'gift-box',
-            'party',
-            'breakfast',
-        ])->orderBy('name')->get();
-
-        $textureTags = Tag::whereIn('name', [
-            'fresh-baked',
-            'flaky',
-            'creamy',
-            'crunchy',
-            'artisan',
-        ])->orderBy('name')->get();
+        $occasionTags = Tag::where('type', TagType::OCCASION->value)->orderBy('name')->get();
+        $textureTags = Tag::where('type', TagType::TEXTURE->value)->orderBy('name')->get();
 
         $products = Product::query()
             ->where('is_active', true)
