@@ -67,18 +67,44 @@
                     <div class="field full-width">
                         <span>Tags</span>
 
+                        @php
+                            $selectedTagIds = old('tags', $product->tags->pluck('id')->toArray());
+                        @endphp
+
                         <div class="tags-wrap">
-                            @foreach($tags as $tag)
-                            <label class="tag-pill">
-                                <input
-                                    type="checkbox"
-                                    name="tags[]"
-                                    value="{{ $tag->id }}"
-                                    {{ in_array($tag->id, old('tags', $product->tags->pluck('id')->toArray())) ? 'checked' : '' }}
-                                >
-                                <span>{{ $tag->name }}</span>
-                            </label>
-                            @endforeach
+                            <div>
+                                <p style="margin: 0 0 10px; font-weight: 600;">Occasion</p>
+                                <div class="tags-wrap">
+                                    @foreach($occasionTags as $tag)
+                                    <label class="tag-pill">
+                                        <input
+                                            type="checkbox"
+                                            name="tags[]"
+                                            value="{{ $tag->id }}"
+                                            {{ in_array($tag->id, $selectedTagIds) ? 'checked' : '' }}
+                                        >
+                                        <span>{{ $tag->name }}</span>
+                                    </label>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 16px;">
+                                <p style="margin: 0 0 10px; font-weight: 600;">Texture</p>
+                                <div class="tags-wrap">
+                                    @foreach($textureTags as $tag)
+                                    <label class="tag-pill">
+                                        <input
+                                            type="checkbox"
+                                            name="tags[]"
+                                            value="{{ $tag->id }}"
+                                            {{ in_array($tag->id, $selectedTagIds) ? 'checked' : '' }}
+                                        >
+                                        <span>{{ $tag->name }}</span>
+                                    </label>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
 

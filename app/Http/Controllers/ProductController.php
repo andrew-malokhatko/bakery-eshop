@@ -128,11 +128,13 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::orderBy('name')->get();
-        $tags = Tag::orderBy('name')->get();
+        $occasionTags = Tag::where('type', TagType::OCCASION->value)->orderBy('name')->get();
+        $textureTags = Tag::where('type', TagType::TEXTURE->value)->orderBy('name')->get();
 
         return view('admin.create-product', [
             'categories' => $categories,
-            'tags' => $tags,
+            'occasionTags' => $occasionTags,
+            'textureTags' => $textureTags,
         ]);
     }
 
@@ -214,12 +216,14 @@ class ProductController extends Controller
     {
         $product->load(['images', 'categories', 'tags']);
         $categories = Category::orderBy('name')->get();
-        $tags = Tag::orderBy('name')->get();
+        $occasionTags = Tag::where('type', TagType::OCCASION->value)->orderBy('name')->get();
+        $textureTags = Tag::where('type', TagType::TEXTURE->value)->orderBy('name')->get();
 
         return view('admin.edit-product', [
             'product' => $product,
             'categories' => $categories,
-            'tags' => $tags,
+            'occasionTags' => $occasionTags,
+            'textureTags' => $textureTags,
         ]);
     }
 

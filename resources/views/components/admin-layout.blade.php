@@ -19,7 +19,7 @@
 
 <body class="site-wrapper">
     <header class="header admin-header">
-        <a class="logo" href="{{ route('home') }}">
+        <a class="logo" href="{{ route('admin.products.index') }}">
             <img src="{{ asset('images/logo.png') }}" alt="Bakery Logo">
         </a>
         @if ($showLogoutLink)

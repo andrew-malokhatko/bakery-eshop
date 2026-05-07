@@ -56,17 +56,39 @@
                         <span>Tags</span>
 
                         <div class="tags-wrap">
-                            @foreach($tags as $tag)
-                            <label class="tag-pill">
-                                <input
-                                    type="checkbox"
-                                    name="tags[]"
-                                    value="{{ $tag->id }}"
-                                    {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}
-                                >
-                                <span>{{ $tag->name }}</span>
-                            </label>
-                            @endforeach
+                            <div>
+                                <p class="font-semibold ml-0.5">Occasion</p>
+                                <div class="tags-wrap">
+                                    @foreach($occasionTags as $tag)
+                                    <label class="tag-pill">
+                                        <input
+                                            type="checkbox"
+                                            name="tags[]"
+                                            value="{{ $tag->id }}"
+                                            {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}
+                                        >
+                                        <span>{{ $tag->name }}</span>
+                                    </label>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div class="mt-1">
+                                <p class="font-semibold ml-0.5">Texture</p>
+                                <div class="tags-wrap">
+                                    @foreach($textureTags as $tag)
+                                    <label class="tag-pill">
+                                        <input
+                                            type="checkbox"
+                                            name="tags[]"
+                                            value="{{ $tag->id }}"
+                                            {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}
+                                        >
+                                        <span>{{ $tag->name }}</span>
+                                    </label>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
 
