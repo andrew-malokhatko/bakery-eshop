@@ -12,6 +12,7 @@
 }
 
 .product .content {
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -43,6 +44,9 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
+}
+
+.product .content .actions > * {
     height: 3rem;
 }
 
@@ -98,6 +102,11 @@
 @media (max-width: 768px) {
     .product {
         flex-direction: column;
+    }
+
+    .product .content .actions {
+        flex-direction: column;
+        height: max-content;
     }
 
     .product > img {

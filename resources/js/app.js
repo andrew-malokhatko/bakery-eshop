@@ -8,6 +8,47 @@ const clampQuantity = (input, value) => {
 	return Math.min(max, Math.max(min, nextValue));
 };
 
+const initShopPriceRange = () => {
+	const minRange = document.getElementById('min-price-range');
+	const maxRange = document.getElementById('max-price-range');
+	const minValue = document.getElementById('min-price-value');
+	const maxValue = document.getElementById('max-price-value');
+	const fill = document.getElementById('price-range-fill');
+
+	if (!minRange || !maxRange || !minValue || !maxValue || !fill) {
+		return;
+	}
+
+	const min = Number(minRange.min);
+	const max = Number(minRange.max);
+
+	const syncState = () => {
+		let currentMin = Number(minRange.value);
+		let currentMax = Number(maxRange.value);
+
+		if (currentMin > currentMax) {
+			[currentMin, currentMax] = [currentMax, currentMin];
+			minRange.value = String(currentMin);
+			maxRange.value = String(currentMax);
+		}
+
+		minValue.textContent = currentMin.toFixed(2);
+		maxValue.textContent = currentMax.toFixed(2);
+
+		const range = max - min || 1;
+		const left = ((currentMin - min) / range) * 100;
+		const right = ((currentMax - min) / range) * 100;
+
+		fill.style.left = `${left}%`;
+		fill.style.width = `${right - left}%`;
+	};
+
+	minRange.addEventListener('input', syncState);
+	maxRange.addEventListener('input', syncState);
+	syncState();
+};
+
+// quantity input buttons
 document.addEventListener('click', (event) => {
 	const button = event.target.closest('.quantity [data-action]');
 
@@ -59,23 +100,37 @@ document.querySelectorAll('.quantity-form').forEach(form => {
 });
 
 // auto submit search and filters forms on change
-let timeoutId
-document.addEventListener('input', event => {
-    if (
-        !event.target.closest('#shop-search') &&
-        !event.target.closest('#shop-filters')
-    ) {
-        return;
-    }
+// let timeoutId
+// document.addEventListener('input', event => {
+//     if (
+//         !event.target.closest('#shop-search') &&
+//         !event.target.closest('#shop-filters')
+//     ) {
+//         return;
+//     }
 
-	const form = event.target.closest('form');
+// 	const form = event.target.closest('form');
 
-    if (!form) {
-        return;
-    }
+//     if (!form) {
+//         return;
+//     }
 
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-        form.submit();
-    }, 500);
+//     clearTimeout(timeoutId);
+//     timeoutId = setTimeout(() => {
+//         form.submit();
+//     }, 500);
+// });
+
+const shopFiltersPanel = document.querySelector('[data-shop-filters-panel]');
+const shopFiltersToggle = document.querySelector('[data-shop-filters-toggle]');
+
+shopFiltersToggle?.addEventListener('click', () => {
+	if (!shopFiltersPanel) {
+		return;
+	}
+
+	shopFiltersPanel.classList.toggle('hidden');
+	shopFiltersToggle.setAttribute('aria-expanded', String(!shopFiltersPanel.classList.contains('hidden')));
 });
+
+initShopPriceRange();

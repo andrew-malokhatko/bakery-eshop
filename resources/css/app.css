@@ -118,7 +118,6 @@ img {
     height: auto;
 }
 
-/* щоб декоративні/контентні картинки виглядали охайно */
 .hero img,
 .review > img,
 .category-card img,
@@ -144,7 +143,6 @@ img {
     height: 20rem;
 }
 
-/* іконки в футері та соцмережах не треба розтягувати */
 .icon,
 .social img {
     width: 1.5rem;
@@ -153,7 +151,6 @@ img {
     border-radius: 0;
 }
 
-/* логотип */
 .logo img {
     width: 5rem;
     height: 5rem;
@@ -161,7 +158,6 @@ img {
     border-radius: 0;
 }
 
-/* товари — однаковий, лаконічний розмір карток */
 .products {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -176,7 +172,6 @@ img {
     height: 100%;
 }
 
-/* фіксований розмір картинки саме для product-card */
 .product-card .image,
 .products .product-card .image {
     width: 100%;
@@ -186,7 +181,6 @@ img {
     border-radius: 1rem;
 }
 
-/* щоб весь контент картки був рівний */
 .product-card {
     height: 100%;
     display: flex;
@@ -197,7 +191,7 @@ img {
     flex-grow: 1;
 }
 
-/* адаптивність */
+/* responsive design */
 @media (max-width: 1100px) {
     .products {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -208,6 +202,10 @@ img {
     .product-card .image,
     .products .product-card .image {
         height: 16rem;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .review > img {

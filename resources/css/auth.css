@@ -32,7 +32,7 @@
 
 .auth .content .email,
 .auth .content .password {
-    width: 20rem;
+    max-width: 20rem;
     height: 2.5rem;
     background-color: var(--color-bg);
     border: 1px solid var(--color-border);
@@ -126,5 +126,6 @@
 
     .auth > img {
         width: 75vw;
+        max-width: 250px;
     }
 }

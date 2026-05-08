@@ -29,6 +29,16 @@
                 <button class="search-button" type="submit">Search</button>
             </form>
 
+            <button
+                type="button"
+                class="shop-filters-toggle"
+                data-shop-filters-toggle
+                aria-controls="shop-filters-panel"
+                aria-expanded="false"
+            >
+                Filters
+            </button>
+
              <div class="products">
                 @foreach ($products as $product)
                     <x-product-card :product="$product" />
@@ -47,7 +57,7 @@
             </div>
         </div>
 
-        <aside class="shop-sidebar">
+        <aside class="shop-sidebar hidden" id="shop-filters-panel" data-shop-filters-panel>
             <form id="shop-filters" method="GET" action="{{ route('shop') }}">
                 <input type="hidden" name="search" value="{{ $search }}" />
 
@@ -160,46 +170,4 @@
         </aside>
     </div>
 
-    <script>
-        (() => {
-            const minRange = document.getElementById('min-price-range');
-            const maxRange = document.getElementById('max-price-range');
-            const minValue = document.getElementById('min-price-value');
-            const maxValue = document.getElementById('max-price-value');
-            const fill = document.getElementById('price-range-fill');
-
-            if (!minRange || !maxRange || !minValue || !maxValue || !fill) {
-                return;
-            }
-
-            const min = Number(minRange.min);
-            const max = Number(minRange.max);
-
-            const syncState = () => {
-                let currentMin = Number(minRange.value);
-                let currentMax = Number(maxRange.value);
-
-                if (currentMin > currentMax) {
-                    [currentMin, currentMax] = [currentMax, currentMin];
-                    minRange.value = String(currentMin);
-                    maxRange.value = String(currentMax);
-                }
-
-                minValue.textContent = currentMin.toFixed(2);
-                maxValue.textContent = currentMax.toFixed(2);
-
-                const range = max - min || 1;
-
-                const left = ((currentMin - min) / range) * 100;
-                const right = ((currentMax - min) / range) * 100;
-
-                fill.style.left = `${left}%`;
-                fill.style.width = `${right - left}%`;
-            };
-
-            minRange.addEventListener('input', syncState);
-            maxRange.addEventListener('input', syncState);
-            syncState();
-        })();
-    </script>
 </x-layout>
