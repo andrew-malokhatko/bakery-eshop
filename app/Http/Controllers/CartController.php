@@ -27,6 +27,23 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
+    public function update(Request $request, Product $product)
+    {
+        $validated = $request->validate([
+            'quantity' => 'required|integer|min:1|max:20',
+        ]);
+
+        $cart = $this->findCurrentCart();
+        if ($cart !== null) {
+            $cart->products()->updateExistingPivot(
+                $product->id,
+                ['quantity' => Number::clamp($validated['quantity'], 1, 20)]
+            );
+        }
+
+        return back();
+    }
+
     public function index()
     {
         return view('cart', [

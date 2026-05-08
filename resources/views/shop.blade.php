@@ -12,7 +12,7 @@
 
     <div class="shop-page">
         <div class="shop-main">
-            <form class="search-bar" id="product-search" method="GET" action="{{ route('shop') }}">
+            <form id="shop-search" class="search-bar" id="product-search" method="GET" action="{{ route('shop') }}">
                 <input type="text" id="search-input" placeholder="Search product..." name="search" value="{{ $search }}" />
                 {{-- Apply categories filters  --}}
                 @foreach ($selectedCategories as $category)
@@ -48,7 +48,7 @@
         </div>
 
         <aside class="shop-sidebar">
-            <form method="GET" action="{{ route('shop') }}">
+            <form id="shop-filters" method="GET" action="{{ route('shop') }}">
                 <input type="hidden" name="search" value="{{ $search }}" />
 
                 <div class="sorting-panel">

@@ -10,6 +10,7 @@ Route::get('/shop', [ProductController::class, 'index'])->name('shop');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/{product}', [CartController::class, 'post'])->name('cart.add');
+Route::patch('/cart/{product}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/{product}', [CartController::class, 'remove'])->name('cart.remove');
 Route::view('/contact', 'contact')->name('contact');
 Route::view('/profile', 'profile')->name('profile');

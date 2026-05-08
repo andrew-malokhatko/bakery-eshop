@@ -68,7 +68,7 @@
                         <span>Tags</span>
 
                         @php
-                            $selectedTagIds = old('tags', $product->tags->pluck('id')->toArray());
+                            $selectedTagIds = old('tags', $gproduct->tags->pluck('id')->toArray());
                         @endphp
 
                         <div class="tags-wrap">

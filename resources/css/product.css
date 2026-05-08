@@ -39,14 +39,15 @@
 }
 
 .product .content .actions {
+    margin-top: 2rem;
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    height: 3rem;
 }
 
 .product .content .actions > button  {
     width: 16rem;
-    height: 3rem;
     border-radius: 1rem;
     background-color: var(--color-btn-primary);
     border-width: 2px;

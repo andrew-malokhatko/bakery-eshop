@@ -41,3 +41,41 @@ document.addEventListener('input', (event) => {
 
 	input.value = String(clampQuantity(input, Number(input.value)));
 });
+
+// auto submit quantity form to update cart entry
+document.querySelectorAll('.quantity-form').forEach(form => {
+    form.querySelectorAll('input').forEach(input => {
+		let timeoutId;
+
+		input.addEventListener('change', () => {
+			console.log("input event");
+			clearTimeout(timeoutId);
+
+			timeoutId = setTimeout(() => {
+				form.submit();
+			}, 300);
+		});
+	});
+});
+
+// auto submit search and filters forms on change
+let timeoutId
+document.addEventListener('input', event => {
+    if (
+        !event.target.closest('#shop-search') &&
+        !event.target.closest('#shop-filters')
+    ) {
+        return;
+    }
+
+	const form = event.target.closest('form');
+
+    if (!form) {
+        return;
+    }
+
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+        form.submit();
+    }, 500);
+});

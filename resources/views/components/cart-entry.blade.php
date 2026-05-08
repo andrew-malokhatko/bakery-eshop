@@ -7,15 +7,34 @@
         <img src="{{ $product?->images?->first()?->url }}" alt="{{ $product?->name }}">
         <span>{{ $product?->name }}</span>
     </div>
-    <p class="unit-price">{{ $product?->price }}€/ks</p>
-    
-    <x-quantity-input :value="(int) ($product?->pivot?->quantity ?? 0)"></x-quantity-input>
-    
-    <p class="total max-price">{{ $product?->price * ((int) ($product?->pivot?->quantity ?? 0)) }}€</p>
-    
-    <form action="{{ route('cart.remove', ['product' => $product?->id]) }}" method="POST" class="remove-form">
+
+    <p class="unit-price">
+        {{ $product?->price }}€/ks
+    </p>
+
+    <form
+        action="{{ route('cart.update', ['product' => $product->id]) }}"
+        method="POST"
+        class="quantity-form"
+    >
+        @csrf
+        @method('PATCH')
+
+        <x-quantity-input name="quantity" :value="(int) ($product?->pivot?->quantity ?? 0)"/>
+    </form>
+
+    <p class="total max-price">
+        {{ $product?->price * ((int) ($product?->pivot?->quantity ?? 0)) }}€
+    </p>
+
+    <form
+        action="{{ route('cart.remove', ['product' => $product?->id]) }}"
+        method="POST"
+        class="remove-form"
+    >
         @csrf
         @method('DELETE')
+
         <button type="submit" class="remove-btn" aria-label="Remove {{ $product?->name }} from cart">
             <img src="{{ asset('images/cross.svg') }}" alt="Remove">
         </button>
