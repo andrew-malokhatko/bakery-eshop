@@ -8,6 +8,7 @@ const clampQuantity = (input, value) => {
 	return Math.min(max, Math.max(min, nextValue));
 };
 
+// price range filter
 const initShopPriceRange = () => {
 	const minRange = document.getElementById('min-price-range');
 	const maxRange = document.getElementById('max-price-range');

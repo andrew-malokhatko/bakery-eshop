@@ -14,50 +14,58 @@
                 <a href="#">More info</a>.
             </p>
 
-            @if ($errors->any())
-            <div class="auth-errors">
-                @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-                @endforeach
-            </div>
-            @endif
-
             <form class="flex flex-col mt-4" method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <input
                     type="text"
                     name="name"
-                    class="email"
+                    class="email @error('name') is-invalid @enderror"
                     placeholder="Name"
                     value="{{ old('name') }}"
                     required
                 >
 
+                @error('name')
+                <p class="auth-field-error">{{ $message }}</p>
+                @enderror
+
                 <input
                     type="email"
                     name="email"
-                    class="email"
+                    class="email @error('email') is-invalid @enderror"
                     placeholder="Email"
                     value="{{ old('email') }}"
                     required
                 >
 
+                @error('email')
+                <p class="auth-field-error">{{ $message }}</p>
+                @enderror
+
                 <input
                     type="password"
                     name="password"
-                    class="password"
+                    class="password @error('password') is-invalid @enderror"
                     placeholder="Password"
                     required
                 >
 
+                @error('password')
+                <p class="auth-field-error">{{ $message }}</p>
+                @enderror
+
                 <input
                     type="password"
                     name="password_confirmation"
-                    class="password"
+                    class="password @error('password_confirmation') is-invalid @enderror"
                     placeholder="Confirm password"
                     required
                 >
+
+                @error('password_confirmation')
+                <p class="auth-field-error">{{ $message }}</p>
+                @enderror
 
                 <p class="auth-switch-text">
                     Already have an account?

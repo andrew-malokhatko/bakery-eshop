@@ -14,33 +14,33 @@
                 <a href="{{ route('register') }}" class="auth-switch-link">Sign up</a>
             </p>
 
-            @if ($errors->any())
-            <div class="auth-errors">
-                @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-                @endforeach
-            </div>
-            @endif
-
             <form class="flex flex-col mt-4" method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <input
                     type="email"
                     name="email"
-                    class="email"
+                    class="email @error('email') is-invalid @enderror"
                     placeholder="Email"
                     value="{{ old('email') }}"
                     required
                 >
 
+                @error('email')
+                <p class="auth-field-error">{{ $message }}</p>
+                @enderror
+
                 <input
                     type="password"
                     name="password"
-                    class="password"
+                    class="password @error('password') is-invalid @enderror"
                     placeholder="Password"
                     required
                 >
+
+                @error('password')
+                <p class="auth-field-error">{{ $message }}</p>
+                @enderror
 
                 <div class="auth-actions">
                     <button type="submit" class="auth-btn">Log in</button>

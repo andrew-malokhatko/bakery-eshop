@@ -10,22 +10,26 @@
                 <input
                     type="email"
                     name="email"
-                    class="email"
+                    class="email @error('email') is-invalid @enderror"
                     placeholder="Email"
                     value="{{ old('email') }}"
                     required
                 >
 
+                @error('email')
+                <p class="auth-field-error">{{ $message }}</p>
+                @enderror
+
                 <input
                     type="password"
                     name="password"
-                    class="password"
+                    class="password @error('password') is-invalid @enderror"
                     placeholder="Password"
                     required
                 >
 
-                @error('email')
-                <p style="color:red;">{{ $message }}</p>
+                @error('password')
+                <p class="auth-field-error">{{ $message }}</p>
                 @enderror
 
                 <button class="log-in" type="submit">Log in</button>
