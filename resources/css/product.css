@@ -3,12 +3,43 @@
     flex-direction: row;
     align-items: center;
     margin-top: 5rem;
-    gap: 8rem;  
+    gap: 8rem;
 }
 
-.product > img {
-    border-radius: 2rem;
+.product-gallery {
     width: 100%;
+    max-width: 36rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product-gallery .main-image {
+    width: 100%;
+    max-height: 32rem;
+    object-fit: cover;
+    border-radius: 2rem;
+}
+
+.gallery-thumbnails {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.thumbnail-button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.thumbnail-button img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    border: 2px solid var(--color-border);
 }
 
 .product .content {

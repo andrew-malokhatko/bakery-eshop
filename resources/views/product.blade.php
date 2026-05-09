@@ -4,7 +4,36 @@
     @endphp
 
     <section class="product">
-        <img src="{{ optional($product?->images->first())->url ?? asset('images/chocolate-roll.jpg') }}"/>
+        <div class="product-gallery">
+            @php
+            $mainImage = $product->images->first();
+            @endphp
+
+            @if($mainImage)
+            <img
+                id="main-product-image"
+                class="main-image"
+                src="{{ $mainImage->url }}"
+                alt="{{ $product->name }}"
+            >
+
+            @if($product->images->count() > 1)
+            <div class="gallery-thumbnails">
+                @foreach($product->images as $image)
+                <button
+                    type="button"
+                    class="thumbnail-button"
+                    onclick="changeProductImage('{{ $image->url }}')"
+                >
+                    <img src="{{ $image->url }}" alt="{{ $product->name }}">
+                </button>
+                @endforeach
+            </div>
+            @endif
+            @else
+            <p>No image available</p>
+            @endif
+        </div>
         <div class="content">
             <h1 class="price">{{ $product?->name ?? 'Product' }}</h1>
             <p class="desc">{{ $product?->description ?? 'Product description is not available.' }}</p>
@@ -44,4 +73,10 @@
     </section> --}}
 
     <x-bestsellers title="We also recommend you try:" :products="$bestsellerProducts" />
+
+    <script>
+        function changeProductImage(src) {
+            document.getElementById('main-product-image').src = src;
+        }
+    </script>
 </x-layout>
