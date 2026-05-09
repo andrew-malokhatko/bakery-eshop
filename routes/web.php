@@ -14,10 +14,21 @@ Route::patch('/cart/{product}', [CartController::class, 'update'])->name('cart.u
 Route::delete('/cart/{product}', [CartController::class, 'remove'])->name('cart.remove');
 Route::view('/contact', 'contact')->name('contact');
 Route::view('/profile', 'profile')->name('profile');
-Route::view('/checkout', 'checkout')->name('checkout');
-Route::view('/checkout/payment', 'checkout-payment')->name('checkout.payment');
-Route::view('/checkout/review', 'checkout-review')->name('checkout.review');
-Route::view('/order-success', 'order-success')->name('order.success');
+
+
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::post('/checkout', [CartController::class, 'saveCheckout'])->name('checkout.save');
+
+Route::get('/checkout/payment', [CartController::class, 'payment'])->name('checkout.payment');
+Route::post('/checkout/payment', [CartController::class, 'savePayment'])->name('checkout.payment.save');
+
+Route::get('/checkout/review', [CartController::class, 'review'])->name('checkout.review');
+
+Route::post('/checkout/complete', [CartController::class, 'completeOrder'])->name('checkout.complete');
+
+Route::get('/order-success', [CartController::class, 'success'])->name('order.success');
+
+
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

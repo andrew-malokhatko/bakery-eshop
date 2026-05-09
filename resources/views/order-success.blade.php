@@ -1,48 +1,35 @@
-<x-layout>
-    <x-slot:title>
-        Order success
-    </x-slot:title>
-
-    <section class="order-success-page">
+<x-layout title="Order success - Bakery">
+    <div class="order-success-page">
         <section class="order-success-card">
-            <h1>Your order is on the way!</h1>
+            <h1>Thank you for your order!</h1>
+
             <p class="order-success-subtitle">
-                Thank you for your order. We’ve received it successfully and we’re already preparing your bakery treats.
+                Your order has been placed successfully. We will prepare your bakery treats as soon as possible.
             </p>
 
             <div class="order-success-summary">
-                <h2>Order review</h2>
+                <h2>Order summary</h2>
 
                 <div class="order-success-row">
-                    <span>Order number</span>
-                    <span>#BK-2026-031</span>
+                    <span>Products count</span>
+                    <span>{{ $count }}</span>
+                </div>
+
+                <div class="order-success-row">
+                    <span>Total</span>
+                    <span>{{ number_format($total, 2) }} €</span>
                 </div>
 
                 <div class="order-success-row">
                     <span>Status</span>
                     <span>Confirmed</span>
                 </div>
-
-                <div class="order-success-row">
-                    <span>Delivery</span>
-                    <span>Standard delivery</span>
-                </div>
-
-                <div class="order-success-row">
-                    <span>Estimated arrival</span>
-                    <span>2–4 business days</span>
-                </div>
-
-                <div class="order-success-row">
-                    <span>Total</span>
-                    <span>67.89€</span>
-                </div>
             </div>
 
             <div class="order-success-actions">
-                <a href="{{ route('profile') }}" class="btn-secondary">Your profile</a>
-                <a href="{{ route('shop') }}" class="btn-primary">Go to shop</a>
+                <a href="{{ route('shop') }}" class="btn-primary">Continue shopping</a>
+                <a href="{{ route('home') }}" class="btn-secondary">Back home</a>
             </div>
         </section>
-    </section>
+    </div>
 </x-layout>

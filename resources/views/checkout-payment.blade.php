@@ -1,13 +1,9 @@
-<x-layout>
-    <x-slot:title>
-        Payment
-    </x-slot:title>
-
-    <section class="checkout-page">
-        <section class="checkout-steps">
+<x-layout title="Payment - Bakery">
+    <div class="checkout-page">
+        <div class="checkout-steps">
             <div class="step-item completed">
                 <span class="step-number">1</span>
-                <span>Delivery</span>
+                <span>Details</span>
             </div>
             <div class="step-line"></div>
             <div class="step-item active">
@@ -19,119 +15,80 @@
                 <span class="step-number">3</span>
                 <span>Review</span>
             </div>
-        </section>
+        </div>
 
         <div class="checkout-layout">
-            <section class="checkout-main">
-                <div class="checkout-card">
+            <main class="checkout-main">
+                <section class="checkout-card">
                     <h1>Payment</h1>
-                    <p class="checkout-subtitle">Choose a payment method and review your order.</p>
+                    <p class="checkout-subtitle">Choose how you would like to pay.</p>
 
-                    <form class="checkout-form">
+                    @if ($errors->any())
+                    <div class="form-errors">
+                        <strong>Please fix the following errors:</strong>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
+                    <form class="checkout-form" method="POST" action="{{ route('checkout.payment.save') }}">
+                        @csrf
+
                         <div class="form-block">
                             <h2>Payment method</h2>
 
                             <div class="payment-options">
-                                <label class="payment-option active">
-                                    <input type="radio" name="payment" checked>
-                                    <span>Credit / Debit card</span>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment_method" value="card"
+                                           @checked(old('payment_method', session('payment.payment_method', 'card')) === 'card')>
+                                    <span>Card payment</span>
                                 </label>
 
                                 <label class="payment-option">
-                                    <input type="radio" name="payment">
-                                    <span>Cash on delivery</span>
+                                    <input type="radio" name="payment_method" value="cash"
+                                           @checked(old('payment_method', session('payment.payment_method')) === 'cash')>
+                                    <span>Cash on delivery / pickup</span>
                                 </label>
-
-                                <label class="payment-option">
-                                    <input type="radio" name="payment">
-                                    <span>Bank transfer</span>
-                                </label>
-                            </div>
-
-                            <div class="form-grid">
-                                <input class="full" type="text" placeholder="Cardholder name">
-                                <input class="full" type="text" placeholder="Card number">
-                                <input type="text" placeholder="MM / YY">
-                                <input type="text" placeholder="CVV">
-                            </div>
-                        </div>
-
-                        <div class="form-block">
-                            <h2>Billing address</h2>
-                            <label class="checkbox-line">
-                                <input type="checkbox" checked>
-                                <span>Same as shipping address</span>
-                            </label>
-                        </div>
-
-                        <div class="form-block">
-                            <h2>Review</h2>
-                            <div class="review-box">
-                                <div class="review-row">
-                                    <span>Contact</span>
-                                    <span>hello@email.com</span>
-                                </div>
-                                <div class="review-row">
-                                    <span>Address</span>
-                                    <span>Main Street 12, Bratislava</span>
-                                </div>
-                                <div class="review-row">
-                                    <span>Delivery</span>
-                                    <span>Standard delivery</span>
-                                </div>
-                                <div class="review-row">
-                                    <span>Payment</span>
-                                    <span>Credit / Debit card</span>
-                                </div>
                             </div>
                         </div>
 
                         <div class="checkout-actions">
                             <a href="{{ route('checkout') }}" class="btn-secondary">Back</a>
-                            <a href="{{ route('checkout.review') }}" class="btn-primary">Review order</a>
+                            <button type="submit" class="btn-primary">Continue to review</button>
                         </div>
                     </form>
-                </div>
-            </section>
+                </section>
+            </main>
 
             <aside class="checkout-sidebar">
-                <div class="sidebar-card">
-                    <h2>Order summary</h2>
+                <section class="sidebar-card">
+                    <h2>Delivery details</h2>
 
-                    <div class="summary-list">
-                        <div class="summary-row">
-                            <span>Chocolate cake × 1</span>
-                            <span>24.99€</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Cupcakes set × 2</span>
-                            <span>38.00€</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Cookies box × 1</span>
-                            <span>12.50€</span>
-                        </div>
-                    </div>
-
-                    <hr>
+                    @php
+                    $checkout = session('checkout');
+                    @endphp
 
                     <div class="summary-meta">
                         <div class="summary-row">
-                            <span>Subtotal</span>
-                            <span>75.49€</span>
+                            <span>Name</span>
+                            <span>{{ $checkout['first_name'] ?? '' }} {{ $checkout['last_name'] ?? '' }}</span>
                         </div>
+
+                        <div class="summary-row">
+                            <span>Email</span>
+                            <span>{{ $checkout['email'] ?? '' }}</span>
+                        </div>
+
                         <div class="summary-row">
                             <span>Delivery</span>
-                            <span>4.90€</span>
+                            <span>{{ ucfirst($checkout['delivery_method'] ?? '') }}</span>
                         </div>
                     </div>
-
-                    <div class="summary-total">
-                        <span>Total</span>
-                        <span>80.39€</span>
-                    </div>
-                </div>
+                </section>
             </aside>
         </div>
-    </section>
+    </div>
 </x-layout>

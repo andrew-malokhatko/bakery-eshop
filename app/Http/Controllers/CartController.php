@@ -139,4 +139,123 @@ class CartController extends Controller
 
         return session('guest_cart_token');
     }
+
+    public function checkout()
+    {
+        $cart = $this->findCurrentCart();
+
+        if ($cart === null || $cart->products->isEmpty()) {
+            return redirect()->route('cart');
+        }
+
+        return view('checkout', [
+            'cart' => $cart,
+        ]);
+    }
+
+    public function saveCheckout(Request $request)
+    {
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'zip' => 'required|string|max:255',
+            'delivery_method' => 'required|in:courier,pickup',
+        ]);
+
+        session()->put('checkout', $validated);
+
+        return redirect()->route('checkout.payment');
+    }
+
+    public function payment()
+    {
+        $cart = $this->findCurrentCart();
+
+        if ($cart === null || $cart->products->isEmpty()) {
+            return redirect()->route('cart');
+        }
+
+        if (!session()->has('checkout')) {
+            return redirect()->route('checkout');
+        }
+
+        return view('checkout-payment', [
+            'cart' => $cart,
+        ]);
+    }
+
+    public function savePayment(Request $request)
+    {
+        $validated = $request->validate([
+            'payment_method' => 'required|in:card,cash,bank_transfer',
+        ]);
+
+        session()->put('payment', $validated);
+
+        return redirect()->route('checkout.review');
+    }
+
+    public function review()
+    {
+        $cart = $this->findCurrentCart();
+        $checkout = session()->get('checkout');
+        $payment = session()->get('payment');
+
+        if ($cart === null || $cart->products->isEmpty()) {
+            return redirect()->route('cart');
+        }
+
+        if (!$checkout) {
+            return redirect()->route('checkout');
+        }
+
+        if (!$payment) {
+            return redirect()->route('checkout.payment');
+        }
+
+        return view('checkout-review', [
+            'cart' => $cart,
+            'checkout' => $checkout,
+            'payment' => $payment,
+        ]);
+    }
+
+    public function completeOrder()
+    {
+        $cart = $this->findCurrentCart();
+
+        if ($cart === null || $cart->products->isEmpty()) {
+            return redirect()->route('cart');
+        }
+
+        $subtotal = $cart->products->sum(function ($product) {
+            return $product->price * (int) $product->pivot->quantity;
+        });
+
+        $checkout = session()->get('checkout', []);
+        $deliveryPrice = ($checkout['delivery_method'] ?? null) === 'courier' ? 3 : 0;
+        $total = $subtotal + $deliveryPrice;
+
+        session()->put('last_order_total', $total);
+        session()->put('last_order_count', $cart->products->sum(fn ($product) => (int) $product->pivot->quantity));
+
+        $cart->products()->detach();
+
+        session()->forget('checkout');
+        session()->forget('payment');
+
+        return redirect()->route('order.success');
+    }
+
+    public function success()
+    {
+        return view('order-success', [
+            'total' => session()->get('last_order_total', 0),
+            'count' => session()->get('last_order_count', 0),
+        ]);
+    }
 }

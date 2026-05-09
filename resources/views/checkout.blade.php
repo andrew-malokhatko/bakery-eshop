@@ -1,13 +1,9 @@
-<x-layout>
-    <x-slot:title>
-        Checkout
-    </x-slot:title>
-
-    <section class="checkout-page">
-        <section class="checkout-steps">
+<x-layout title="Checkout - Bakery">
+    <div class="checkout-page">
+        <div class="checkout-steps">
             <div class="step-item active">
                 <span class="step-number">1</span>
-                <span>Delivery</span>
+                <span>Details</span>
             </div>
             <div class="step-line"></div>
             <div class="step-item">
@@ -19,61 +15,69 @@
                 <span class="step-number">3</span>
                 <span>Review</span>
             </div>
-        </section>
+        </div>
 
         <div class="checkout-layout">
-            <section class="checkout-main">
-                <div class="checkout-card">
+            <main class="checkout-main">
+                <section class="checkout-card">
                     <h1>Checkout</h1>
-                    <p class="checkout-subtitle">Enter your contact and delivery details to continue your order.</p>
+                    <p class="checkout-subtitle">Fill in your delivery and contact information.</p>
 
-                    <form class="checkout-form">
+                    @if ($errors->any())
+                    <div class="form-errors">
+                        <strong>Please fix the following errors:</strong>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
+                    <form class="checkout-form" method="POST" action="{{ route('checkout.save') }}">
+                        @csrf
+
                         <div class="form-block">
                             <h2>Contact information</h2>
-                            <div class="form-grid one-column">
-                                <input type="email" placeholder="Email address">
-                                <input type="tel" placeholder="Phone number">
+
+                            <div class="form-grid">
+                                <input type="text" name="first_name" placeholder="First name" value="{{ old('first_name', session('checkout.first_name')) }}" required>
+                                <input type="text" name="last_name" placeholder="Last name" value="{{ old('last_name', session('checkout.last_name')) }}" required>
+                                <input type="email" name="email" placeholder="Email" value="{{ old('email', session('checkout.email')) }}" required>
+                                <input type="text" name="phone" placeholder="Phone" value="{{ old('phone', session('checkout.phone')) }}" required>
                             </div>
                         </div>
 
                         <div class="form-block">
-                            <h2>Shipping address</h2>
+                            <h2>Delivery address</h2>
+
                             <div class="form-grid">
-                                <input type="text" placeholder="First name">
-                                <input type="text" placeholder="Last name">
-                                <input class="full" type="text" placeholder="Street address">
-                                <input type="text" placeholder="City">
-                                <input type="text" placeholder="ZIP code">
-                                <input class="full" type="text" placeholder="Country / Region">
+                                <input class="full" type="text" name="street" placeholder="Street and house number" value="{{ old('street', session('checkout.street')) }}" required>
+                                <input type="text" name="city" placeholder="City" value="{{ old('city', session('checkout.city')) }}" required>
+                                <input type="text" name="zip" placeholder="ZIP code" value="{{ old('zip', session('checkout.zip')) }}" required>
                             </div>
                         </div>
 
                         <div class="form-block">
                             <h2>Delivery method</h2>
+
                             <div class="delivery-options">
-                                <label class="delivery-option active">
-                                    <input type="radio" name="delivery" checked>
+                                <label class="delivery-option">
+                                    <input type="radio" name="delivery_method" value="courier"
+                                           @checked(old('delivery_method', session('checkout.delivery_method', 'courier')) === 'courier')>
                                     <div>
-                                        <strong>Standard delivery</strong>
-                                        <p>2–4 business days</p>
+                                        <strong>Courier delivery</strong>
+                                        <p>Delivered to your address.</p>
                                     </div>
-                                    <span>4.90€</span>
+                                    <span>3.00 €</span>
                                 </label>
 
                                 <label class="delivery-option">
-                                    <input type="radio" name="delivery">
-                                    <div>
-                                        <strong>Express delivery</strong>
-                                        <p>Next business day</p>
-                                    </div>
-                                    <span>8.90€</span>
-                                </label>
-
-                                <label class="delivery-option">
-                                    <input type="radio" name="delivery">
+                                    <input type="radio" name="delivery_method" value="pickup"
+                                           @checked(old('delivery_method', session('checkout.delivery_method')) === 'pickup')>
                                     <div>
                                         <strong>Store pickup</strong>
-                                        <p>Pick up from bakery</p>
+                                        <p>Pick up your order at our bakery.</p>
                                     </div>
                                     <span>Free</span>
                                 </label>
@@ -82,50 +86,56 @@
 
                         <div class="checkout-actions">
                             <a href="{{ route('cart') }}" class="btn-secondary">Back to cart</a>
-                            <a href="{{ route('checkout.payment') }}" class="btn-primary">Continue to payment</a>
+                            <button type="submit" class="btn-primary">Continue to payment</button>
                         </div>
                     </form>
-                </div>
-            </section>
+                </section>
+            </main>
 
             <aside class="checkout-sidebar">
-                <div class="sidebar-card">
+                <section class="sidebar-card">
                     <h2>Order summary</h2>
 
+                    @php
+                    $subtotal = 0;
+                    @endphp
+
                     <div class="summary-list">
-                        <div class="summary-row">
-                            <span>Chocolate cake × 1</span>
-                            <span>24.99€</span>
+                        @php
+                        $subtotal = 0;
+                        @endphp
+
+                        <div class="summary-list">
+                            @foreach($cart->products as $product)
+                            @php
+                            $quantity = (int) $product->pivot->quantity;
+                            $lineTotal = $product->price * $quantity;
+                            $subtotal += $lineTotal;
+                            @endphp
+
+                            <div class="summary-row">
+                                <span>{{ $product->name }} × {{ $quantity }}</span>
+                                <span>{{ number_format($lineTotal, 2) }} €</span>
+                            </div>
+                            @endforeach
                         </div>
-                        <div class="summary-row">
-                            <span>Cupcakes set × 2</span>
-                            <span>38.00€</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Cookies box × 1</span>
-                            <span>12.50€</span>
+
+                        <hr>
+
+                        <div class="summary-total">
+                            <span>Total</span>
+                            <span>{{ number_format($subtotal, 2) }} €</span>
                         </div>
                     </div>
 
                     <hr>
 
-                    <div class="summary-meta">
-                        <div class="summary-row">
-                            <span>Subtotal</span>
-                            <span>75.49€</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Delivery</span>
-                            <span>4.90€</span>
-                        </div>
-                    </div>
-
                     <div class="summary-total">
                         <span>Total</span>
-                        <span>80.39€</span>
+                        <span>{{ number_format($subtotal, 2) }} €</span>
                     </div>
-                </div>
+                </section>
             </aside>
         </div>
-    </section>
+    </div>
 </x-layout>
