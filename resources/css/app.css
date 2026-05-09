@@ -40,7 +40,7 @@
 
 :root {
     --color-bg: #ffffff;
-    --color-bg-muted: #f6f6f6;
+    --color-bg-muted: rgba(239, 212, 255, 0.78);
     --color-bg-hover: #fafafa;
     --color-text-primary: #111827;
     --color-text-muted: #6b7280;
