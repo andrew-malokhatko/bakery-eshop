@@ -18,7 +18,7 @@
         </div>
     </section>
 
-    <section class="product-info">
+    {{-- <section class="product-info">
         <div class="desc">
             <h2>Description</h2>
             <p>{{ $product?->description ?? 'Product description is not available.' }}</p>
@@ -41,7 +41,7 @@
                 <li>May contain nuts</li>
             </ul>
         </div>
-    </section>
+    </section> --}}
 
     <x-bestsellers title="We also recommend you try:" :products="$bestsellerProducts" />
 </x-layout>

@@ -12,27 +12,13 @@ class ProductCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $productCategoryMap = [
-            ['name' => 'Baguette', 'category' => 'bread'],
-            ['name' => 'Country Bread Loaf', 'category' => 'bread'],
-            ['name' => 'Sourdough Bread', 'category' => 'bread'],
-            ['name' => 'Apple Pie', 'category' => 'cakes'],
-            ['name' => 'Chocolate Cake', 'category' => 'cakes'],
-            ['name' => 'Vanilla Cupcake', 'category' => 'cakes'],
-            ['name' => 'Blueberry Muffin', 'category' => 'pastries'],
-            ['name' => 'Chocolate Roll', 'category' => 'pastries'],
-            ['name' => 'Cinnamon Bun', 'category' => 'pastries'],
-            ['name' => 'Croissant', 'category' => 'pastries'],
-            ['name' => 'Donut', 'category' => 'pastries'],
-            ['name' => 'Strawberry Tart', 'category' => 'pastries'],
-            ['name' => 'Cookies Box', 'category' => 'cookies'],
-        ];
+        $products = require database_path('seeders/data/bakery_products.php');
 
         $links = [];
 
-        foreach ($productCategoryMap as $item) {
-            $productId = DB::table('products')->where('name', $item['name'])->value('id');
-            $categoryId = DB::table('categories')->where('name', $item['category'])->value('id');
+        foreach ($products as $product) {
+            $productId = DB::table('products')->where('name', $product['name'])->value('id');
+            $categoryId = DB::table('categories')->where('name', $product['category'])->value('id');
 
             if ($productId && $categoryId) {
                 $links[] = [

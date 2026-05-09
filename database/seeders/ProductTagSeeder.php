@@ -12,28 +12,14 @@ class ProductTagSeeder extends Seeder
      */
     public function run(): void
     {
-        $productTagMap = [
-            ['name' => 'Baguette', 'tags' => ['fresh-baked', 'artisan', 'breakfast']],
-            ['name' => 'Country Bread Loaf', 'tags' => ['fresh-baked', 'artisan', 'breakfast']],
-            ['name' => 'Sourdough Bread', 'tags' => ['artisan', 'crunchy']],
-            ['name' => 'Apple Pie', 'tags' => ['flaky', 'party']],
-            ['name' => 'Blueberry Muffin', 'tags' => ['fresh-baked', 'breakfast']],
-            ['name' => 'Chocolate Cake', 'tags' => ['creamy', 'birthday']],
-            ['name' => 'Chocolate Roll', 'tags' => ['flaky', 'party']],
-            ['name' => 'Cinnamon Bun', 'tags' => ['fresh-baked', 'breakfast']],
-            ['name' => 'Cookies Box', 'tags' => ['crunchy', 'gift-box']],
-            ['name' => 'Croissant', 'tags' => ['fresh-baked', 'flaky', 'breakfast']],
-            ['name' => 'Donut', 'tags' => ['creamy', 'party']],
-            ['name' => 'Strawberry Tart', 'tags' => ['creamy', 'wedding']],
-            ['name' => 'Vanilla Cupcake', 'tags' => ['creamy', 'birthday', 'gift-box']],
-        ];
+        $products = require database_path('seeders/data/bakery_products.php');
 
         $links = [];
 
-        foreach ($productTagMap as $item) {
-            $productId = DB::table('products')->where('name', $item['name'])->value('id');
+        foreach ($products as $product) {
+            $productId = DB::table('products')->where('name', $product['name'])->value('id');
 
-            foreach ($item['tags'] as $tagName) {
+            foreach ($product['tags'] as $tagName) {
                 $tagId = DB::table('tags')->where('name', $tagName)->value('id');
 
                 if ($productId && $tagId) {
