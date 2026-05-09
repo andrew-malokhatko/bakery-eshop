@@ -154,6 +154,12 @@ class ProductController extends Controller
             'tags.*' => 'exists:tags,id',
             'images' => 'required|array|min:2',
             'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+        ], [
+            'images.required' => 'Please upload at least 2 product images.',
+            'images.min' => 'Please upload at least 2 product images.',
+            'images.*.image' => 'Each uploaded file must be an image.',
+            'images.*.mimes' => 'Images must be jpg, jpeg, png, or webp.',
+            'images.*.max' => 'Each image must be smaller than 2 MB.',
         ]);
 
         $product = Product::create([
@@ -241,8 +247,8 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
-            'images' => 'nullable|array|min:2',
-            'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:5120',
+            'images' => 'required|array|min:2',
+            'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         $product->update([

@@ -197,4 +197,23 @@
         flex: 1;
         justify-content: center;
     }
+
+    .form-errors {
+        margin-bottom: 1.25rem;
+        padding: 1rem 1.25rem;
+        border: 1px solid #f5c2c7;
+        background-color: #f8d7da;
+        color: #842029;
+        border-radius: 0.75rem;
+    }
+
+    .form-errors strong {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-errors ul {
+        margin: 0;
+        padding-left: 1.25rem;
+    }
 }

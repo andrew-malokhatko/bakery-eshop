@@ -5,9 +5,10 @@
             <p class="subtitle">Add a new item to your bakery catalog.</p>
 
             @if ($errors->any())
-            <div style="margin-bottom: 20px; padding: 12px 16px; border: 1px solid #f5c2c7; background: #f8d7da; color: #842029; border-radius: 8px;">
-                <strong>Form errors:</strong>
-                <ul style="margin: 8px 0 0 18px;">
+            <div class="form-errors">
+                <strong>Please fix the following errors:</strong>
+
+                <ul>
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                     @endforeach
@@ -15,7 +16,23 @@
             </div>
             @endif
 
-            <form class="product-form" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+            <div id="client-errors" class="form-errors" style="display: none;">
+                <strong>Please fix the following errors:</strong>
+                <ul id="client-errors-list"></ul>
+            </div>
+
+            @if ($errors->any())
+            <div class="form-errors">
+                <strong>Please fix the following errors:</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            <form id="product-form" class="product-form" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-grid">
@@ -119,4 +136,59 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('product-form');
+            const imagesInput = document.getElementById('images');
+            const errorBox = document.getElementById('client-errors');
+            const errorList = document.getElementById('client-errors-list');
+
+            if (!form || !imagesInput || !errorBox || !errorList) {
+                return;
+            }
+
+            form.addEventListener('submit', function (event) {
+                const errors = [];
+                const files = Array.from(imagesInput.files);
+
+                const isEditPage = window.location.pathname.includes('/edit');
+                const maxFileSize = 2 * 1024 * 1024; // 2 MB
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+                if (!isEditPage && files.length < 2) {
+                    errors.push('Please upload at least 2 product images.');
+                }
+
+                if (isEditPage && files.length > 0 && files.length < 2) {
+                    errors.push('Please upload at least 2 images if you want to replace the current images.');
+                }
+
+                files.forEach(function (file) {
+                    if (!allowedTypes.includes(file.type)) {
+                        errors.push(file.name + ' must be JPG, PNG, or WEBP.');
+                    }
+
+                    if (file.size > maxFileSize) {
+                        errors.push(file.name + ' is too large. Each image must be smaller than 2 MB.');
+                    }
+                });
+
+                if (errors.length > 0) {
+                    event.preventDefault();
+
+                    errorList.innerHTML = '';
+
+                    errors.forEach(function (error) {
+                        const li = document.createElement('li');
+                        li.textContent = error;
+                        errorList.appendChild(li);
+                    });
+
+                    errorBox.style.display = 'block';
+                    errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+    </script>
 </x-admin-layout>
