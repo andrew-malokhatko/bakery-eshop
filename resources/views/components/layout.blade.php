@@ -52,6 +52,7 @@
 </main>
 
 <footer class="footer">
+    <div class="footer-inner">
     <div class="social">
         <a href="#" aria-label="Instagram">
             <img src="{{ asset('images/instagram.svg') }}" alt="" class="icon" />
@@ -72,6 +73,8 @@
     </div>
 
     <img src="{{ asset('images/logo.png') }}" alt="Bakery Logo">
+    </div>
+
 </footer>
 </body>
 
