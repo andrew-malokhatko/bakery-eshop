@@ -97,6 +97,22 @@
     padding: 0;
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(236, 170, 255, 0.45), transparent 24%),
+        radial-gradient(circle at 90% 95%, rgba(236, 170, 255, 0.38), transparent 28%);
+    filter: blur(18px);
+}
+
+body {
+    margin: 0;
+}
+
 .site-wrapper {
 	width: 100%;
 	max-width: var(--w-xl);
