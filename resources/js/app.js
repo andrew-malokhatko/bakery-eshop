@@ -15,6 +15,7 @@ const initShopPriceRange = () => {
 	const minValue = document.getElementById('min-price-value');
 	const maxValue = document.getElementById('max-price-value');
 	const fill = document.getElementById('price-range-fill');
+	const resetPriceFilterInput = document.querySelector('[data-reset-price-filter]');
 
 	if (!minRange || !maxRange || !minValue || !maxValue || !fill) {
 		return;
@@ -44,8 +45,37 @@ const initShopPriceRange = () => {
 		fill.style.width = `${right - left}%`;
 	};
 
-	minRange.addEventListener('input', syncState);
-	maxRange.addEventListener('input', syncState);
+	const resetToFullPriceRange = () => {
+		minRange.value = minRange.min;
+		maxRange.value = maxRange.max;
+
+		if (resetPriceFilterInput) {
+			resetPriceFilterInput.value = '1';
+		}
+
+		syncState();
+	};
+
+	minRange.addEventListener('input', () => {
+		if (resetPriceFilterInput) {
+			resetPriceFilterInput.value = '0';
+		}
+
+		syncState();
+	});
+
+	maxRange.addEventListener('input', () => {
+		if (resetPriceFilterInput) {
+			resetPriceFilterInput.value = '0';
+		}
+
+		syncState();
+	});
+
+	document.querySelectorAll('#shop-filters input[name="categories[]"]').forEach((checkbox) => {
+		checkbox.addEventListener('change', resetToFullPriceRange);
+	});
+
 	syncState();
 };
 

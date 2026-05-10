@@ -36,6 +36,7 @@ class ProductController extends Controller
             'order_by' => 'nullable|in:price_asc,price_desc',
             'tags' => 'nullable|array',
             'tags.*' => 'string|distinct|exists:tags,name',
+            'reset_price_filter' => 'nullable|boolean',
         ]);
 
         $selectedCategories = $validated['categories'] ?? [];
@@ -70,13 +71,19 @@ class ProductController extends Controller
         $absoluteMinPrice = $priceBounds?->min_price ?? 0;
         $absoluteMaxPrice = $priceBounds?->max_price ?? 0;
 
-        $minPrice = array_key_exists('min_price', $validated)
-            ? (float) $validated['min_price']
-            : $absoluteMinPrice;
+        $resetPriceFilter = $request->boolean('reset_price_filter');
 
-        $maxPrice = array_key_exists('max_price', $validated)
-            ? (float) $validated['max_price']
-            : $absoluteMaxPrice;
+        $minPrice = $resetPriceFilter
+            ? $absoluteMinPrice
+            : (array_key_exists('min_price', $validated)
+                ? (float) $validated['min_price']
+                : $absoluteMinPrice);
+
+        $maxPrice = $resetPriceFilter
+            ? $absoluteMaxPrice
+            : (array_key_exists('max_price', $validated)
+                ? (float) $validated['max_price']
+                : $absoluteMaxPrice);
 
         if ($minPrice > $maxPrice) {
             [$minPrice, $maxPrice] = [$maxPrice, $minPrice];

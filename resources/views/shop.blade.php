@@ -60,6 +60,7 @@
         <aside class="shop-sidebar hidden" id="shop-filters-panel" data-shop-filters-panel>
             <form id="shop-filters" method="GET" action="{{ route('shop') }}">
                 <input type="hidden" name="search" value="{{ $search }}" />
+                <input type="hidden" name="reset_price_filter" value="0" data-reset-price-filter />
 
                 <div class="sorting-panel">
                     <h3>Price & Order</h3>

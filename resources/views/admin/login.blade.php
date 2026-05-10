@@ -4,7 +4,7 @@
             <h1 class="name">Admin</h1>
             <h2 class="text">Log in</h2>
 
-            <form action="{{ route('admin.login.post') }}" method="POST">
+            <form class="flex flex-col mt-4" action="{{ route('admin.login.post') }}" method="POST">
                 @csrf
 
                 <input
