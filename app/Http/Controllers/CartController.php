@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderEntry;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\User;
@@ -10,6 +12,7 @@ use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+
 
 class CartController extends Controller
 {
@@ -232,14 +235,35 @@ class CartController extends Controller
             return redirect()->route('cart');
         }
 
+        $checkout = session()->get('checkout', []);
+        $payment = session()->get('payment', []);
+
         $subtotal = $cart->products->sum(function ($product) {
             return $product->price * (int) $product->pivot->quantity;
         });
 
-        $checkout = session()->get('checkout', []);
         $deliveryPrice = ($checkout['delivery_method'] ?? null) === 'courier' ? 3 : 0;
         $total = $subtotal + $deliveryPrice;
 
+        $order = Order::create([
+            'status' => 'created',
+            'user_id' => Auth::id(),
+            'total_price' => $total,
+            'customer_data' => $checkout,
+            'payment_method' => $payment['payment_method'] ?? null,
+            'delivery_method' => $checkout['delivery_method'] ?? null,
+        ]);
+
+        foreach ($cart->products as $product) {
+            OrderEntry::create([
+                'order_id' => $order->id,
+                'product_id' => $product->id,
+                'quantity' => (int) $product->pivot->quantity,
+                'price_at_purchase' => $product->price,
+            ]);
+        }
+
+        session()->put('last_order_id', $order->id);
         session()->put('last_order_total', $total);
         session()->put('last_order_count', $cart->products->sum(fn ($product) => (int) $product->pivot->quantity));
 
@@ -250,7 +274,6 @@ class CartController extends Controller
 
         return redirect()->route('order.success');
     }
-
     public function success()
     {
         return view('order-success', [
