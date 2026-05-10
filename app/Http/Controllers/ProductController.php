@@ -254,8 +254,17 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
-            'images' => 'required|array|min:2',
+
+            // In edit: images are optional.
+            // If admin uploads new images, there must be at least 2.
+            // If admin uploads nothing, old images stay.
+            'images' => 'nullable|array|min:2',
             'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+        ], [
+            'images.min' => 'Please upload at least 2 images if you want to replace the current images.',
+            'images.*.image' => 'Each uploaded file must be an image.',
+            'images.*.mimes' => 'Images must be jpg, jpeg, png, or webp.',
+            'images.*.max' => 'Each image must be smaller than 2 MB.',
         ]);
 
         $product->update([
@@ -298,7 +307,6 @@ class ProductController extends Controller
             ->route('admin.products.index')
             ->with('success', 'Product updated successfully.');
     }
-
     /**
      * Remove the specified resource from storage.
      */
